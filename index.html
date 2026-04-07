@@ -196,6 +196,30 @@ footer span{font-family:var(--sub);font-size:11.5px;color:var(--t3);font-weight:
   .tl-card-inner{max-width:100%!important;margin-left:0!important}
   .anime-char,.sticker{display:none}
 }
+  /* 粘贴在这里 */
+.h-avatar-wrap {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid var(--white);
+  box-shadow: 0 10px 25px rgba(155, 0, 255, 0.15);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+.h-avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.h-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
 </style>
 </head>
 <body>
