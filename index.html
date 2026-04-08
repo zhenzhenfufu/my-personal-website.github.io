@@ -29,20 +29,20 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 🌍 贴边大陆 Hero 区 🌍 ====== */
+/* ====== 🌍 多巴胺矢量贴边地图 Hero 区 🌍 ====== */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 
 /* 海底生物 */
 .marine { position: absolute; font-size: 5rem; opacity: 0.25; pointer-events: none; z-index: 0; filter: blur(1px); }
-.whale { top: 60%; animation: swim-whale 35s linear infinite; }
-.dolphin { top: 20%; animation: swim-dolphin 25s linear infinite; animation-delay: -10s; }
+.whale { top: 65%; animation: swim-whale 35s linear infinite; }
+.dolphin { top: 15%; animation: swim-dolphin 25s linear infinite; animation-delay: -10s; }
 @keyframes swim-whale { 0% { left: -20%; transform: rotate(5deg); } 50% { transform: rotate(-5deg) translateY(-40px); } 100% { left: 120%; transform: rotate(5deg); } }
 @keyframes swim-dolphin { 0% { right: -20%; transform: scaleX(-1) rotate(5deg); } 50% { transform: scaleX(-1) rotate(-5deg) translateY(-20px); } 100% { right: 120%; transform: scaleX(-1) rotate(5deg); } }
 
-/* 全局 SVG 路线 */
+/* ================= SVG 全局网络：飞机停靠与水平轮船 ================= */
 .global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 3; pointer-events: none; }
 
-/* 岛屿包裹层 */
+/* ================= 真实圆润不规则大陆 (绝对贴边) ================= */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:2; }
 .continent-wrapper { position: absolute; width: 45vw; height: 45vh; min-width: 320px; min-height: 320px; }
 .cont-tl { top: 0; left: 0; }
@@ -50,7 +50,6 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .cont-bl { bottom: 0; left: 0; width: 50vw; height: 50vh; min-width: 380px; min-height: 380px;} /* 漫游区域放大 */
 .cont-br { bottom: 0; right: 0; }
 
-/* 真实世界地图岛屿：圆润钝角，纯净渐变色 */
 .island-path {
   width: 100%; height: 100%; pointer-events: auto; cursor: pointer;
   stroke: rgba(255,255,255,0.7); stroke-linejoin: round; stroke-linecap: round;
@@ -60,61 +59,59 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 }
 .island-path:hover { transform: scale(1.03); filter: drop-shadow(15px 25px 15px rgba(155,0,255,0.3)) brightness(1.05); z-index: 20; }
 
-/* ================= 文字自然排版防遮挡系统 ================= */
+/* ================= 文字防遮挡系统 ================= */
 .island-content { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 5;}
 .cont-label {
   position: absolute; transform: translate(-50%, -50%);
-  font-family: var(--serf); font-weight: 900; font-size: 1.5rem; color: var(--white);
-  text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px rgba(155,0,255,0.5);
-  width: max-content; max-width: 260px; /* 足够宽以防止别扭换行 */
-  white-space: pre-wrap; word-break: keep-all; line-height: 1.4;
+  font-family: var(--serf); font-weight: 900; font-size: 1.45rem; color: var(--white);
+  text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px rgba(155,0,255,0.4);
+  width: max-content; white-space: pre-wrap; word-break: keep-all; line-height: 1.35;
   transition: transform 0.3s ease; z-index: 10;
 }
-.island-path:hover + .island-content .cont-label { transform: translate(-50%, -50%) scale(1.15); text-shadow: 0 5px 15px rgba(255,255,255,0.7); }
+.island-path:hover + .island-content .cont-label { transform: translate(-50%, -50%) scale(1.15); text-shadow: 0 5px 15px rgba(255,255,255,0.6); }
 
-/* 极度贴合屏幕四角边缘 */
-.cont-tl .cont-label { top: 20%; left: 22%; text-align: left; transform-origin: top left; }
-.cont-tr .cont-label { top: 20%; right: -2%; text-align: right; transform-origin: top right; }
-.cont-bl .cont-label { bottom: 0%; left: 22%; text-align: left; transform-origin: bottom left; }
-.cont-br .cont-label { bottom: 0%; right: -2%; text-align: right; transform-origin: bottom right; }
+/* 绝对精准地钉在角落地带 */
+.cont-tl .cont-label { top: 22%; left: 22%; text-align: left; transform-origin: top left; }
+.cont-tr .cont-label { top: 22%; right: 5%; text-align: right; transform-origin: top right; }
+.cont-bl .cont-label { bottom: 5%; left: 22%; text-align: left; transform-origin: bottom left; }
+.cont-br .cont-label { bottom: 5%; right: 5%; text-align: right; transform-origin: bottom right; }
 
-/* ================= 区域专属奇遇小动画 ================= */
+/* ================= 奇遇小动画 ================= */
 /* 🎓 左上: 书本与学术 */
-.anim-edu { position: absolute; top: 40%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.8rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+.anim-edu { position: absolute; top: 40%; left: 45%; font-size: 3rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.5rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 .sym1 { top: -15px; left: -10px; animation-delay: 0s; }
-.sym2 { top: -25px; left: 35px; animation-delay: 1s; }
-.sym3 { top: -5px; left: 60px; animation-delay: 2s; }
-@keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-60px) scale(1.3) rotate(15deg); opacity: 0; } }
+.sym2 { top: -25px; left: 25px; animation-delay: 1s; }
+.sym3 { top: -5px; left: 50px; animation-delay: 2s; }
+@keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-50px) scale(1.3) rotate(15deg); opacity: 0; } }
 
 /* 🔬 右上: 显微镜气泡 */
-.anim-res { position: absolute; top: 45%; left: 60%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.bubble { position: absolute; font-size: 1.5rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
+.anim-res { position: absolute; top: 45%; left: 50%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.bubble { position: absolute; font-size: 1.2rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
 .b1 { top: -5px; left: -10px; animation-delay: 0s; }
-.b2 { top: -20px; left: 15px; animation-delay: 1s; }
-@keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-50px) scale(1.3); opacity: 0; } }
+.b2 { top: -20px; left: 10px; animation-delay: 1s; }
+@keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-40px) scale(1.3); opacity: 0; } }
 
-/* 🏎️ 左下: 超大F1与安静小猫 (互不干扰) */
-.anim-life { position: absolute; top: 55%; left: 45%; transform: translate(-50%, -50%); width: 250px; height: 150px; }
-.mini-cat { position: absolute; top: 50%; right: -20px; font-size: 3.5rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; z-index: 2; }
+/* 🏎️ 左下: 巨大F1赛车与猫咪 (互不干扰) */
+.anim-life { position: absolute; top: 45%; left: 55%; transform: translate(-50%, -50%); width: 250px; height: 150px; }
+.mini-cat { position: absolute; top: 50px; right: 10px; font-size: 2.8rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; z-index: 2; }
 @keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
-/* F1 巨型专属赛道 */
-.f1-track-svg { position: absolute; top: 0; left: -20px; width: 180px; height: 150px; }
-/* rotate(180) 修复倒着开的问题 */
-.f1-car { font-size: 3.8rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
+/* F1 巨型赛道，逆时针画道修复方向问题 */
+.f1-track-svg { position: absolute; top: 0; left: 0; width: 180px; height: 150px; }
+.f1-car { font-size: 3rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
 
-/* ⛺ 右下: 篝火与信件 */
-.anim-ppl { position: absolute; top: 55%; left: 55%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.letter { position: absolute; font-size: 2.2rem; top: 20px; left: -40px; transform: rotate(-15deg); }
-.spark { position: absolute; width: 8px; height: 8px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 12px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
+/* ⛺ 右下: 篝火信件 */
+.anim-ppl { position: absolute; top: 55%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.letter { position: absolute; font-size: 1.8rem; top: 20px; left: -30px; transform: rotate(-15deg); }
+.spark { position: absolute; width: 6px; height: 6px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 10px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
 .sp1 { top: 0; left: 20px; animation-delay: 0s; }
-.sp2 { top: 15px; left: 45px; animation-delay: 0.5s; }
-.sp3 { top: -10px; left: 35px; animation-delay: 1s; }
-@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-50px) scale(0.2); opacity: 0; } }
+.sp2 { top: 15px; left: 40px; animation-delay: 0.5s; }
+.sp3 { top: -10px; left: 30px; animation-delay: 1s; }
+@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-40px) scale(0.2); opacity: 0; } }
 
-/* ================= 轮船相邻水平航线 (只在左下和右下之间往返) ================= */
-.ship-route { position: absolute; bottom: 12%; left: 25%; width: 50%; height: 0; border-bottom: 4px dashed rgba(0, 170, 255, 0.4); z-index: 4; pointer-events: none;}
-.ship { position: absolute; top: -35px; font-size: 3.5rem; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.4)); animation: ship-horizontal 18s ease-in-out infinite; }
+/* ================= 轮船相邻水平航线 (只在底部相邻岛屿之间往返) ================= */
+.ship-route { position: absolute; bottom: 12%; left: 25%; width: 50%; height: 0; border-bottom: 3px dashed rgba(0, 170, 255, 0.4); z-index: 4; pointer-events: none;}
+.ship { position: absolute; top: -30px; font-size: 3rem; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.4)); animation: ship-horizontal 20s ease-in-out infinite; }
 @keyframes ship-horizontal {
   0% { left: 0%; transform: scaleX(-1) rotate(-5deg); }
   10% { left: 0%; transform: scaleX(-1) rotate(5deg); } /* 停靠青岛边缘 */
@@ -138,17 +135,19 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 }
 .flip-back { transform: rotateY(180deg); align-items: stretch; text-align: left; padding: 40px 50px; }
 
-.h-avatar-wrap{width:130px;height:130px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.2rem auto;overflow:hidden;transition:transform 0.3s ease}
-.h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
+/* 正面：个人简介与照片并排 */
+.front-intro-wrap { display: flex; align-items: center; gap: 20px; width: 100%; max-width: 580px; margin-bottom: 1.5rem; text-align: left;}
+.h-avatar-wrap{width:120px;height:120px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);overflow:hidden;transition:transform 0.3s ease; flex-shrink: 0;}
 .h-avatar-wrap img{width:100%;height:100%;object-fit:cover}
-.h-typing{font-size:1.25rem;font-weight:600;color:var(--t2);margin-bottom:1.5rem;margin-top:-0.5rem}
+.intro-text-side { flex: 1; }
+.h-name{font-family:var(--disp);font-size:3rem;line-height:1.1;color:var(--t1);margin-top: 5px; margin-bottom: 0px;}
+.rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-badge{display:inline-block;background:var(--white);padding:5px 14px;border-radius:100px;font-size:.8rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom: 5px;}
+.h-typing{font-size:1.15rem;font-weight:600;color:var(--t2);margin-bottom: 1.2rem; display: flex; align-items: center;}
 .typewriter-text{color:var(--v);font-family:var(--mono)}
 .typewriter-cursor{display:inline-block;width:3px;background-color:var(--v);margin-left:4px;animation:blink 0.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.h-badge{display:inline-block;background:var(--white);padding:6px 16px;border-radius:100px;font-size:.85rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom:1.2rem}
-.h-name{font-family:var(--disp);font-size:4rem;line-height:1.1;color:var(--t1);margin-bottom:1rem}
-.rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:550px;margin-left:auto;margin-right:auto}
+.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:550px;text-align: center;}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
 .btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer;}
 .btn-main{background:var(--v);color:var(--white);box-shadow:0 8px 24px rgba(155,0,255,.3)}
@@ -156,7 +155,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px var(--shd)}
 .btn-s:hover{background:var(--vl);color:var(--v)}
 
-/* 背面简历极简优雅排版 */
+/* 背面：简历排版（中英全覆盖翻译字典） */
 .resume-name { font-size: 2.2rem; font-family: var(--serf); font-weight: 900; color: var(--v); margin-bottom: 1.2rem; border-bottom: 2px dashed var(--brd); padding-bottom: 10px; text-align: center;}
 .res-row { display: flex; align-items: center; font-size: 1.05rem; font-weight: 700; color: var(--t2); margin-bottom: 12px; }
 .res-icon { display: inline-block; width: 35px; font-size: 1.25rem; text-align: center;}
@@ -217,11 +216,12 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 
 @media(max-width:720px){
   .nav-links{display:none}
-  .h-name{font-size:3.2rem}
   .grid-2{grid-template-columns:1fr}
   .tl-wrap::before{left:24px}
   .tl-row::after{left:24px}
   .tl-card{width:calc(100% - 56px);margin-left:auto!important}
+  .front-intro-wrap { flex-direction: column; text-align: center;}
+  .h-name { font-size: 2.5rem; }
   .flip-back { padding: 30px 20px; }
   .res-row { font-size: 0.9rem; }
   .global-routes { display: none; } 
@@ -249,7 +249,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 </nav>
 
 <section id="hero">
-
+  
   <svg class="global-routes" viewBox="0 0 100 100" preserveAspectRatio="none">
     <path id="plane-path" d="M 22 22 Q 50 5 78 22 Q 95 50 78 78 Q 50 95 22 78 Q 5 50 22 22 Z" fill="none" stroke="rgba(155,0,255,0.2)" stroke-width="0.3" stroke-dasharray="1.5 1.5"/>
     <g filter="drop-shadow(1px 2px 1px rgba(0,0,0,0.3))">
@@ -303,12 +303,10 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
         <div class="anim-life">
           <div class="mini-cat">🐱</div>
           <svg viewBox="0 0 200 200" class="f1-track-svg">
-            <path id="f1-mini-path" d="M 160 100 A 70 40 0 1 0 20 100 A 70 40 0 1 0 160 100" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
-            <g transform="translate(0, -15)">
-              <text class="f1-car" transform="rotate(180)">🏎️
-                 <animateMotion dur="4s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
-              </text>
-            </g>
+            <path id="f1-mini-path" d="M 160 100 A 70 40 0 1 1 20 100 A 70 40 0 1 1 160 100 Z" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
+            <text class="f1-car">🏎️
+               <animateMotion dur="4s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
+            </text>
           </svg>
         </div>
       </div>
@@ -334,14 +332,18 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
     <div class="flip-inner" id="flipCard">
       
       <div class="flip-front" style="pointer-events: auto;">
-        <div class="h-avatar-wrap"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
-        <div class="h-badge">🌸 <span data-i18n="hero.badge">UCSD 2029届 · 圣地亚哥</span></div>
-        <h1 class="h-name">Zhen<br><span class="rainbow" data-i18n="hero.name2">Wang ✦</span></h1>
+        <div class="front-intro-wrap">
+          <div class="h-avatar-wrap"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
+          <div class="intro-text-side">
+            <div class="h-badge">🌸 <span data-i18n="hero.badge">UCSD 2029届 · 圣地亚哥</span></div>
+            <h1 class="h-name">Zhen<br><span class="rainbow" data-i18n="hero.name2">Wang ✦</span></h1>
+          </div>
+        </div>
         <div class="h-typing">
           <span data-i18n="hero.focus">我专注于：</span>
           <span id="typewriter" class="typewriter-text"></span><span class="typewriter-cursor">|</span>
         </div>
-        <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨</p>
+        <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法 and AI 的交叉点探索世界 ✨</p>
         <div class="h-btns">
           <a onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});" class="btn btn-main">✉ <span data-i18n="hero.cta1">深入探索我</span></a>
           <a onclick="toggleFlip()" class="btn btn-s" data-i18n="hero.cta2">点击反转查看个人信息</a>
@@ -350,10 +352,10 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 
       <div class="flip-back" style="pointer-events: auto;">
         <div class="resume-name" data-i18n="res.name">王臻 Zhen Wang</div>
-        <div class="res-row"><span class="res-icon">📱</span> <span data-i18n="res.phone">手机: +86 15205181003 / +1 858-220-8768</span></div>
-        <div class="res-row"><span class="res-icon">📧</span> <span data-i18n="res.email">邮箱: zhw124@ucsd.edu</span></div>
-        <div class="res-row"><span class="res-icon">🎂</span> <span data-i18n="res.dob">出生日期: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别: 男</span></div>
-        <div class="res-row"><span class="res-icon">📍</span> <span data-i18n="res.loc">所在地: 中国 上海 & 美国 圣地亚哥</span></div>
+        <div class="res-row"><span class="res-icon">📱</span> <span data-i18n="res.phone">手机 Phone: +86 15205181003 / +1 858-220-8768</span></div>
+        <div class="res-row"><span class="res-icon">📧</span> <span data-i18n="res.email">邮箱 Email: zhw124@ucsd.edu</span></div>
+        <div class="res-row"><span class="res-icon">🎂</span> <span data-i18n="res.dob">出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male</span></div>
+        <div class="res-row"><span class="res-icon">📍</span> <span data-i18n="res.loc">所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego</span></div>
         
         <hr style="margin: 20px 0; border: none; border-top: 2px dashed rgba(155,0,255,0.2);">
         
@@ -366,7 +368,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
           <div class="edu-sub" data-i18n="res.edu2s">高中 | 2022.09 - 2025.06</div>
         </div>
 
-        <button onclick="toggleFlip()" class="btn btn-main" style="margin-top: 15px; align-self: center;" data-i18n="res.back">↩ 返回首页</button>
+        <button onclick="toggleFlip()" class="btn btn-main" style="margin-top: 15px; align-self: center;" data-i18n="res.back">↩ 返回正面界面</button>
       </div>
 
     </div>
@@ -379,9 +381,9 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
     <h2 class="s-title"><span data-i18n="exp.title1">我做过的</span> <span class="rainbow" data-i18n="exp.title2">研究与探索</span></h2>
     <div class="grid-2">
       <div class="exp-card"><div class="e-icon ei-p">⚡</div><div>
-        <div class="e-org" data-i18n="e1.org">UCSD · 独立本科科研项目</div>
-        <div class="e-role" data-i18n="e1.role">独立研究员 — 边缘 AI 热节流效应研究</div>
-        <div class="chip c-p" data-i18n="e1.date">2026.03 – 至今</div>
+        <div class="e-org" data-i18n="e1.org">UCSD · Independent Undergraduate Research</div>
+        <div class="e-role" data-i18n="e1.role">Independent Researcher — Edge AI Thermal Throttling</div>
+        <div class="chip c-p" data-i18n="e1.date">2026.03 – Present</div>
         <ul class="e-ul"><li data-i18n="e1.b1"></li><li data-i18n="e1.b2"></li><li data-i18n="e1.b3"></li></ul>
       </div></div>
       <div class="exp-card"><div class="e-icon ei-v">🧠</div><div>
@@ -453,7 +455,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
       <div class="m-avatar"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
       <div class="m-content">
         <div class="m-name">Zhen Wang</div>
-        <div class="m-text" data-i18n="moment1.text">Sept.30-Oct.13 劳力士上海大师赛 🎾</div>
+        <div class="m-text" data-i18n="moment1.text">Sept.30-Oct.13 Rolex Shanghai Masters 🎾</div>
         <div class="m-gallery">
           <img src="微信图片_20260407003201_22_2.jpg" alt="pic"><img src="微信图片_20260407003203_23_2.jpg" alt="pic"><img src="微信图片_20260407003205_24_2.jpg" alt="pic">
           <img src="微信图片_20260407003207_25_2.jpg" alt="pic"><img src="微信图片_20260407003208_26_2.jpg" alt="pic"><img src="微信图片_20260407003210_27_2.jpg" alt="pic">
@@ -507,34 +509,34 @@ zh:{
 'res.phone': '手机 Phone: +86 15205181003 / +1 858-220-8768',
 'res.email': '邮箱 Email: zhw124@ucsd.edu',
 'res.dob': '出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male',
-'res.loc': '所在地 Location: 中国 上海 & 美国 圣地亚哥',
-'res.edu1t': '🎓 加州大学圣地亚哥分校 (UCSD)', 'res.edu1s': '本科 | 2025.09 - 至今',
+'res.loc': '所在地 Location: 中国 上海 & 美国 圣地亚哥 San Diego',
+'res.edu1t': '🎓 UC San Diego (UCSD)', 'res.edu1s': '本科 | 2025.09 - 至今 (Present)',
 'res.edu2t': '🏫 上海市世外中学 (WFLA)', 'res.edu2s': '高中 | 2022.09 - 2025.06',
 'res.back': '↩ 返回正面界面',
-'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
-'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
+'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法 and AI 的交叉点探索世界 ✨','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
+'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'2026.03 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
 'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
 'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
-'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
+'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 EPL 转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
 'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
 'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。','p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。','p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。',
 'sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点',
 'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。','sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。',
-'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
+'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 Rolex Shanghai Masters 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
 },
 en:{
 'map.edu': 'In-Class Learning', 'map.res': 'Research & Projects', 'map.life': 'Daily Life & Hobbies', 'map.ppl': 'Connections',
-'hero.cta1':'Explore Me', 'hero.cta2':'Click to view personal info',
+'hero.cta1':'深入探索我', 'hero.cta2':'Click to view personal info',
 'res.name': 'Zhen Wang',
 'res.phone': 'Phone: +86 15205181003 / +1 858-220-8768',
 'res.email': 'Email: zhw124@ucsd.edu',
-'res.dob': 'DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ Gender: Male',
+'res.dob': 'DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; Gender: Male',
 'res.loc': 'Location: Shanghai, China & San Diego, USA',
 'res.edu1t': '🎓 UC San Diego (UCSD)', 'res.edu1s': 'Undergrad | 2025.09 - Present',
 'res.edu2t': '🏫 Shanghai World Foreign Language Academy (WFLA)', 'res.edu2s': 'High School | 2022.09 - 2025.06',
-'res.back': '↩ Back to Front',
-'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
+'res.back': '↩ 返回正面界面',
+'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms and AI ✨','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
 'e1.org':'UCSD · Independent Undergraduate Research','e1.role':'Independent Researcher — Edge AI Thermal Throttling','e1.date':'Mar 2026 – Present','e1.b1':'Independently leading a study on thermal throttling & energy efficiency in edge AI. Advisor: Prof. Peter Chi.','e1.b2':'Deployed Llama-3 on Jetson; collected real-time GPU temperature, clock speed, power draw via nvidia-smi & Prometheus.','e1.b3':'Built a quantitative efficiency-to-heat model with visualization dashboards on AI inference energy cost.',
 'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.',
 'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.',
@@ -552,7 +554,7 @@ en:{
 'sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.',
 'sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.',
 'sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.',
-'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 at Rolex SH Masters 🎾','moment1.location': 'Qi Zhong Tennis Center, Shanghai','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
+'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 Rolex Shanghai Masters 🎾','moment1.location': '旗忠网球中心 Qi Zhong Tennis Center, Shanghai','moment1.date': '2024年10月11日','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
 }};
 
 let lang='zh';
