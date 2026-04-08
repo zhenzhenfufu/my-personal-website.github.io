@@ -11,8 +11,7 @@ html { scroll-behavior: smooth; }
 :root{
   --bg-ocean: linear-gradient(135deg, #FFE5EE 0%, #F2E5FF 50%, #DCF4FF 100%);
   --white:#fff;
-  --p:#FF2D78;--pl:#FFE5EE; --y:#FFB700;--yl:#FFF8DC;
-  --b:#00AAFF;--bl:#DCF4FF; --v:#9B00FF;--vl:#F2E5FF;
+  --neon-p: #ff007f;--neon-y: #ffd700;--neon-b: #00ffff;--neon-v: #bf00ff;
   --t1:#180828;--t2:#5A3870;--t3:#C0A8D8;
   --brd:#EED8FF;--shd:rgba(155,0,255,.07);
   --disp:'Pacifico',cursive;--mono:'Space Mono',monospace;--serf:'Noto Serif SC',serif;
@@ -29,83 +28,119 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .lang-btn{background:var(--vl);color:var(--v);border:none;border-radius:100px;padding:4px 12px;font-weight:800;cursor:pointer;transition:.2s}
 .lang-btn:hover{background:var(--v);color:var(--white)}
 
-/* ====== 🌍 顶级多巴胺地图 Hero 区 🌍 ====== */
+/* ====== 🌍 顶级多巴胺地图 Hero 区 (霓虹 F1 赛车壁纸) 🌍 ====== */
 #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
 
-/* 海底生物 */
-.marine { position: absolute; font-size: 5rem; opacity: 0.2; pointer-events: none; z-index: 0; filter: blur(1px); }
-.whale { top: 60%; animation: swim-whale 35s linear infinite; }
-.dolphin { top: 15%; animation: swim-dolphin 25s linear infinite; animation-delay: -10s; }
-@keyframes swim-whale { 0% { left: -20%; transform: rotate(5deg); } 50% { transform: rotate(-5deg) translateY(-40px); } 100% { left: 120%; transform: rotate(5deg); } }
-@keyframes swim-dolphin { 0% { right: -20%; transform: scaleX(-1) rotate(5deg); } 50% { transform: scaleX(-1) rotate(-5deg) translateY(-20px); } 100% { right: 120%; transform: scaleX(-1) rotate(5deg); } }
+/* 海底生物移除了，使主题更纯粹 */
 
-/* ================= 真实凹凸自然大陆 (SVG Path) ================= */
+/* ================= 真实圆润流动的大陆地貌 (Blob 流体 -> 霓虹流体) ================= */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
-.continent-wrapper { position: absolute; width: 45vw; height: 45vh; min-width: 320px; min-height: 320px; }
-.cont-tl { top: 0; left: 0; }
-.cont-tr { top: 0; right: 0; }
-.cont-bl { bottom: 0; left: 0; }
-.cont-br { bottom: 0; right: 0; }
 
-.island-path {
-  width: 100%; height: 100%; pointer-events: auto; cursor: pointer;
-  stroke: rgba(255,255,255,0.8); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round;
-  filter: drop-shadow(8px 12px 10px rgba(155,0,255,0.2));
+.continent {
+  position: absolute; pointer-events: auto; cursor: pointer;
+  border: 5px solid rgba(255,255,255,0.7);
+  box-shadow: inset 0 0 30px rgba(255,255,255,0.4), 8px 12px 15px rgba(155,0,255,0.15);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
-  transform-origin: center;
 }
-.island-path:hover { transform: scale(1.03); filter: drop-shadow(15px 25px 15px rgba(155,0,255,0.3)) brightness(1.05); z-index: 20; }
+.continent:hover { transform: scale(1.04) translateY(-10px); filter: brightness(1.08); z-index: 10; box-shadow: inset 0 0 40px rgba(255,255,255,0.6), 15px 20px 20px rgba(155,0,255,0.25); }
 
-/* ================= 极度精准的防遮挡文本与航线系统 ================= */
-/* 把文本提升到和航线同一层级，使用 VW/VH 保证全屏幕像素级对齐 */
-.global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 5; pointer-events: none; }
-
-.cont-label {
-  position: absolute; transform: translate(-50%, -50%);
-  font-family: var(--serf); font-weight: 900; font-size: 1.45rem; color: var(--white);
-  text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px rgba(155,0,255,0.4);
-  width: max-content; max-width: 220px; white-space: pre-wrap; word-break: keep-all; line-height: 1.35;
-}
-
-/* 完美定于四个 25% 极限界点 */
-.label-tl { top: 25vh; left: 25vw; text-align: center; }
-.label-tr { top: 25vh; left: 75vw; text-align: center; }
-.label-bl { top: 75vh; left: 25vw; text-align: center; }
-.label-br { top: 75vh; left: 75vw; text-align: center; }
+/* 四块极度圆润、形状各异的大陆 (彻底钝角 -> 霓虹几何边缘) */
+.cont-tl { top: -10vh; left: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #FFAEC9, var(--p)); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; box-shadow: 0 0 10px var(--neon-p); border-color: var(--neon-p); }
+.cont-tr { top: -10vh; right: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #FFDF73, var(--y)); border-radius: 50% 50% 30% 70% / 60% 40% 70% 40%; box-shadow: 0 0 10px var(--neon-y); border-color: var(--neon-y); }
+.cont-bl { bottom: -15vh; left: -10vw; width: 55vw; height: 55vh; background: linear-gradient(135deg, #7CD6FF, var(--b)); border-radius: 30% 70% 50% 50% / 40% 40% 60% 60%; box-shadow: 0 0 10px var(--neon-b); border-color: var(--neon-b); } /* 漫游心底被特别放大 */
+.cont-br { bottom: -10vh; right: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #D09CFF, var(--v)); border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; box-shadow: 0 0 10px var(--neon-v); border-color: var(--neon-v); }
 
 /* ================= 奇遇小动画层 ================= */
-.island-content { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 2;}
+.island-anim { position: absolute; pointer-events: none; z-index: 5; }
 
 /* 🎓 左上: 书本与学术 */
-.anim-edu { position: absolute; top: 50%; left: 60%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.5rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+.anim-edu { top: 45%; left: 55%; font-size: 3rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px var(--neon-p)); }
+.math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.5rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px var(--neon-p); }
 .sym1 { top: -15px; left: -10px; animation-delay: 0s; }
 .sym2 { top: -25px; left: 25px; animation-delay: 1s; }
 .sym3 { top: -5px; left: 50px; animation-delay: 2s; }
 @keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-50px) scale(1.3) rotate(15deg); opacity: 0; } }
 
 /* 🔬 右上: 显微镜气泡 */
-.anim-res { position: absolute; top: 55%; left: 40%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.bubble { position: absolute; font-size: 1.2rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
+.anim-res { top: 50%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px var(--neon-y)); }
+.bubble { position: absolute; font-size: 1.2rem; opacity: 0; animation: float-bubble 2s ease-in infinite; text-shadow: 0 0 5px var(--neon-y);}
 .b1 { top: -5px; left: -10px; animation-delay: 0s; }
 .b2 { top: -20px; left: 10px; animation-delay: 1s; }
 @keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-40px) scale(1.3); opacity: 0; } }
 
-/* 🏎️ 左下: 巨大F1赛车与猫咪 (独立运作) */
-.anim-life { position: absolute; top: 35%; left: 65%; transform: translate(-50%, -50%); width: 200px; height: 150px; }
-.mini-cat { position: absolute; top: 120px; left: -50px; font-size: 3rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; z-index: 2; }
+/* 🏎️ 左下: 巨大F1赛道与安静猫咪 (正向行驶修复) */
+.anim-life { top: 40%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 150px; }
+.mini-cat { position: absolute; top: 100px; right: 0; font-size: 2.8rem; filter: drop-shadow(2px 4px 2px var(--neon-b)); animation: cat-blink 4s infinite; text-shadow: 0 0 5px var(--neon-b);}
 @keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
-/* F1 巨型专属赛道，逆时针画道，正向行驶绝不倒车 */
-.f1-track-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+/* F1 巨型专属赛道，椭圆白线赛道 */
+.f1-track-svg { position: absolute; top: 0; left: 0; width: 180px; height: 120px; }
+.f1-car { font-size: 2.5rem; filter: drop-shadow(2px 4px 2px var(--neon-b)); }
 
 /* ⛺ 右下: 篝火信件 */
-.anim-ppl { position: absolute; top: 40%; left: 45%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.letter { position: absolute; font-size: 2.2rem; top: 20px; left: -40px; transform: rotate(-15deg); }
-.spark { position: absolute; width: 8px; height: 8px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 12px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
+.anim-ppl { top: 45%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px var(--neon-v)); }
+.letter { position: absolute; font-size: 1.8rem; top: 20px; left: -30px; transform: rotate(-15deg); text-shadow: 0 0 5px var(--neon-v);}
+.spark { position: absolute; width: 6px; height: 6px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 10px var(--neon-y); opacity: 0; animation: spark-fly 1.5s linear infinite; }
 .sp1 { top: 0; left: 20px; animation-delay: 0s; }
-.sp2 { top: 15px; left: 45px; animation-delay: 0.5s; }
-.sp3 { top: -10px; left: 35px; animation-delay: 1s; }
-@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-50px) scale(0.2); opacity: 0; } }
+.sp2 { top: 15px; left: 40px; animation-delay: 0.5s; }
+.sp3 { top: -10px; left: 30px; animation-delay: 1s; }
+@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-40px) scale(0.2); opacity: 0; } }
+
+/* ================= 🚀 顶级全屏坐标系 (文字、航线、飞机 绝对对齐) ================= */
+.global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 4; pointer-events: none; }
+
+/* 文字永远防换行、防遮挡，独立于岛屿之外悬浮，霓虹色发光 */
+.global-label {
+  position: absolute; transform: translate(-50%, -50%);
+  font-family: var(--serf); font-weight: 900; font-size: 1.5rem; color: var(--white);
+  white-space: nowrap; letter-spacing: 2px; transition: transform 0.3s ease;
+}
+
+/* 完美对齐的四个基准点坐标 */
+/* TL = 18vw, 18vh */
+/* TR = 82vw, 18vh */
+/* BR = 82vw, 82vh */
+/* BL = 18vw, 82vh */
+.label-tl { top: 18vh; left: 18vw; text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px var(--neon-p); }
+.label-tr { top: 18vh; left: 82vw; text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px var(--neon-y); }
+.label-br { top: 82vh; left: 82vw; text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px var(--neon-v); }
+.label-bl { top: 82vh; left: 18vw; text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px var(--neon-b); }
+
+/* ✈️ 完美停站航线系统 (具有霓虹发光的飞机) */
+.plane { position: absolute; font-size: 2.8rem; margin-top: -1.4rem; margin-left: -1.4rem; filter: drop-shadow(4px 8px 4px rgba(0,0,0,0.4)); animation: plane-fly 24s infinite; text-shadow: 0 0 10px var(--neon-p); }
+
+@keyframes plane-fly {
+  /* TL (对白) - 停顿 */
+  0%, 10% { top: 18vh; left: 18vw; transform: rotate(90deg); text-shadow: 0 0 10px var(--neon-p); }
+  /* 抛物线顶点 1 */
+  15% { top: 5vh; left: 50vw; transform: rotate(90deg); }
+  /* TR (求证) - 停顿 */
+  20%, 30% { top: 18vh; left: 82vw; transform: rotate(180deg); text-shadow: 0 0 10px var(--neon-y); }
+  /* 抛物线顶点 2 */
+  40% { top: 50vh; left: 95vw; transform: rotate(180deg); }
+  /* BR (相望) - 停顿 */
+  50%, 60% { top: 82vh; left: 82vw; transform: rotate(270deg); text-shadow: 0 0 10px var(--neon-v); }
+  /* 抛物线顶点 3 */
+  65% { top: 95vh; left: 50vw; transform: rotate(270deg); }
+  /* BL (漫游) - 停顿 */
+  70%, 80% { top: 82vh; left: 18vw; transform: rotate(360deg); text-shadow: 0 0 10px var(--neon-b); }
+  /* 抛物线顶点 4 */
+  90% { top: 50vh; left: 5vw; transform: rotate(360deg); }
+  /* 回到 TL */
+  100% { top: 18vh; left: 18vw; transform: rotate(450deg); text-shadow: 0 0 10px var(--neon-p); }
+}
+
+/* 🚢 轮船垂直相邻航线 (只在右侧中间海域做胶囊型往返，霓虹色发光) */
+.ship-route { position: absolute; top: 15vh; right: 8vw; width: 0; height: 70vh; border-right: 3px dashed rgba(0, 170, 255, 0.4); z-index: 3; pointer-events: none;}
+.ship { position: absolute; top: 0%; right: -35px; font-size: 3rem; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.4)); animation: ship-vertical 20s ease-in-out infinite; text-shadow: 0 0 10px var(--neon-b); }
+@keyframes ship-vertical {
+  0% { top: 0%; transform: scaleX(1) rotate(95deg); }
+  10% { top: 0%; transform: scaleX(1) rotate(85deg); } /* 停靠 TR */
+  45% { top: 100%; transform: scaleX(1) rotate(95deg); } 
+  50% { top: 100%; transform: scaleX(-1) rotate(85deg); } /* 抵达 BR，转身 */
+  60% { top: 100%; transform: scaleX(-1) rotate(95deg); }
+  90% { top: 0%; transform: scaleX(-1) rotate(85deg); }
+  100% { top: 0%; transform: scaleX(1) rotate(95deg); } /* 返回调头 */
+}
 
 /* ================= 玻璃态护盾 3D 翻转系统 ================= */
 .flip-container { perspective: 1500px; width: 100%; min-height: 480px; position: relative; z-index: 20; pointer-events: auto; max-width: 680px; margin: 0 auto; }
@@ -126,32 +161,35 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
 .h-avatar-wrap img{width:100%;height:100%;object-fit:cover}
 .intro-text-side { flex: 1; }
-.h-name{font-family:var(--disp);font-size:3.5rem;line-height:1.1;color:var(--t1);margin-top: 5px; margin-bottom: 0px;}
-.rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.h-badge{display:inline-block;background:var(--white);padding:5px 14px;border-radius:100px;font-size:.8rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom: 5px;}
+.h-name{font-family:var(--disp);font-size:3.5rem;line-height:1.1;color:var(--t1);margin-top: 5px; margin-bottom: 0px; text-shadow: 0 0 10px var(--neon-v);}
+.rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.h-badge{display:inline-block;background:var(--white);padding:5px 14px;border-radius:100px;font-size:.8rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom: 5px; text-shadow: 0 0 5px var(--neon-p);}
 .h-typing{font-size:1.15rem;font-weight:600;color:var(--t2);margin-bottom: 1.2rem; display: flex; align-items: center;}
-.typewriter-text{color:var(--v);font-family:var(--mono)}
-.typewriter-cursor{display:inline-block;width:3px;background-color:var(--v);margin-left:4px;animation:blink 0.8s infinite}
+.typewriter-text{color:var(--neon-v);font-family:var(--mono); text-shadow: 0 0 10px var(--neon-v);}
+.typewriter-cursor{display:inline-block;width:3px;background-color:var(--neon-v);margin-left:4px;animation:blink 0.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:550px;text-align: center;}
+.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:550px;text-align: center; text-shadow: 0 0 5px var(--t2);}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
 .btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer;}
-.btn-main{background:var(--v);color:var(--white);box-shadow:0 8px 24px rgba(155,0,255,.3)}
-.btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(155,0,255,.4)}
-.btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px var(--shd)}
-.btn-s:hover{background:var(--vl);color:var(--v)}
+.btn-main{background:var(--neon-p);color:var(--white);box-shadow:0 8px 24px rgba(255,0,127,.3)}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(255,0,127,.4)}
+.btn-s{background:var(--white);color:var(--t2);box-shadow:0 8px 24px var(--shd); text-shadow: 0 0 5px var(--t2);}
+.btn-s:hover{background:var(--vl);color:var(--neon-v); text-shadow: 0 0 10px var(--neon-v);}
 
-/* 背面：简历排版（中英全覆盖翻译字典） */
-.resume-name { font-size: 2.2rem; font-family: var(--serf); font-weight: 900; color: var(--v); margin-bottom: 1.2rem; border-bottom: 2px dashed var(--brd); padding-bottom: 10px; text-align: center;}
+/* 背面：简历排版 (霓虹图标发光) */
+.resume-name { font-size: 2.2rem; font-family: var(--serf); font-weight: 900; color: var(--neon-v); margin-bottom: 1.2rem; border-bottom: 2px dashed var(--brd); padding-bottom: 10px; text-align: center; text-shadow: 0 0 10px var(--neon-v);}
 .res-row { display: flex; align-items: center; font-size: 1.05rem; font-weight: 700; color: var(--t2); margin-bottom: 12px; }
 .res-icon { display: inline-block; width: 35px; font-size: 1.25rem; text-align: center;}
+.ri-p { text-shadow: 0 0 10px var(--neon-p); color: var(--neon-p);}
+.ri-v { text-shadow: 0 0 10px var(--neon-v); color: var(--neon-v);}
+.ri-b { text-shadow: 0 0 10px var(--neon-b); color: var(--neon-b);}
 .edu-box { background: rgba(255,255,255,0.6); padding: 12px 20px; border-radius: 16px; border: 1px solid var(--white); margin-bottom: 10px; }
 .edu-title { font-weight: 900; color: var(--t1); font-size: 1.1rem; }
 .edu-sub { font-size: 0.95rem; color: var(--t2); font-weight: 700; margin-top: 4px; }
 
 /* 其他板块通用 */
-.s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--b);background:var(--bl);padding:4px 12px;border-radius:100px;margin-bottom:1rem}
-.s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
+.s-tag{display:inline-block;font-size:.85rem;font-weight:800;color:var(--neon-b);background:var(--bl);padding:4px 12px;border-radius:100px;margin-bottom:1rem; text-shadow: 0 0 5px var(--neon-b);}
+.s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2; text-shadow: 0 0 10px var(--t1);}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .exp-card{background:var(--white);padding:32px;border-radius:24px;box-shadow:0 12px 32px var(--shd);display:flex;gap:20px;border:1px solid var(--brd);transition: all 0.4s ease; opacity:0; transform:translateY(30px)}
 .exp-card.vis{opacity:1; transform:translateY(0)}
@@ -159,21 +197,21 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .e-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
 .ei-p{background:var(--pl);color:var(--p)}.ei-v{background:var(--vl);color:var(--v)}.ei-b{background:var(--bl);color:var(--b)}.ei-g{background:var(--gl);color:var(--g)}
 .e-org{font-weight:800;font-size:1.2rem;margin-bottom:4px}
-.e-role{color:var(--v);font-weight:700;font-size:.95rem;margin-bottom:8px}
+.e-role{color:var(--neon-v);font-weight:700;font-size:.95rem;margin-bottom:8px; text-shadow: 0 0 5px var(--neon-v);}
 .e-ul{list-style:none;margin-top:12px;font-size:.95rem;color:var(--t2)}
 .e-ul li{margin-bottom:8px;position:relative;padding-left:16px}
-.e-ul li::before{content:'✦';position:absolute;left:0;color:var(--v);font-size:.8rem;top:2px}
+.e-ul li::before{content:'✦';position:absolute;left:0;color:var(--neon-v);font-size:.8rem;top:2px; text-shadow: 0 0 5px var(--neon-v);}
 .chip{display:inline-block;padding:4px 12px;border-radius:100px;font-size:.8rem;font-weight:700;margin-bottom:12px;border:none}
-.c-p{color:var(--p);background:var(--pl)}.c-v{color:var(--v);background:var(--vl)}.c-b{color:var(--b);background:var(--bl)}
+.c-p{color:var(--neon-p);background:var(--pl); text-shadow: 0 0 5px var(--neon-p);}.c-v{color:var(--neon-v);background:var(--vl); text-shadow: 0 0 5px var(--neon-v);}.c-b{color:var(--neon-b);background:var(--bl); text-shadow: 0 0 5px var(--neon-b);}
 .tl-wrap{max-width:800px;margin:0 auto;position:relative}
 .tl-wrap::before{content:'';position:absolute;width:2px;background:var(--brd);top:0;bottom:0;left:50%;transform:translateX(-50%)}
 .tl-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;position:relative;width:100%;opacity:0; transform:translateY(30px); transition: all 0.5s ease;}
 .tl-row.vis{opacity:1; transform:translateY(0)}
-.tl-row::after{content:'';position:absolute;width:16px;height:16px;background:var(--v);border:4px solid var(--white);border-radius:50%;left:50%;transform:translateX(-50%);box-shadow:0 0 0 4px var(--vl)}
+.tl-row::after{content:'';position:absolute;width:16px;height:16px;background:var(--neon-v);border:4px solid var(--white);border-radius:50%;left:50%;transform:translateX(-50%);box-shadow:0 0 0 4px var(--vl)}
 .tl-card{width:45%;background:var(--white);padding:20px;border-radius:20px;box-shadow:0 8px 24px var(--shd);border:1px solid var(--brd); transition: 0.3s;}
 .tl-card:hover{transform: translateY(-5px); box-shadow: 0 12px 30px rgba(155,0,255,.15);}
 .tl-row:nth-child(even) .tl-card{margin-left:auto}
-.tl-ev{font-weight:800;color:var(--v);margin-bottom:8px}
+.tl-ev{font-weight:800;color:var(--neon-v);margin-bottom:8px; text-shadow: 0 0 5px var(--neon-v);}
 .tl-d{font-size:.9rem;color:var(--t2)}
 .moment-card{display:flex;gap:15px;background:var(--white);padding:24px;border-radius:16px;box-shadow:0 8px 24px var(--shd);margin:0 auto 2rem;max-width:800px; opacity:0; transform:translateY(30px); transition: 0.5s ease;}
 .moment-card.vis{opacity:1; transform:translateY(0)}
@@ -187,16 +225,16 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 .m-location{font-size:.85rem;color:#576b95;margin-bottom:8px;font-weight:600}
 .m-footer{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:#b2b2b2}
 .pow-card{background:var(--white);padding:24px;border-radius:24px;box-shadow:0 12px 32px var(--shd);border:1px solid var(--brd);text-align:center;width:100%;max-width:400px;margin:2rem auto}
-.pow-title{font-weight:900;color:var(--v);font-size:1.2rem;margin-bottom:4px}
+.pow-title{font-weight:900;color:var(--neon-v);font-size:1.2rem;margin-bottom:4px; text-shadow: 0 0 10px var(--neon-v);}
 .pow-sub{font-size:.75rem;color:var(--t3);font-weight:800;letter-spacing:1px;margin-bottom:16px}
-.pow-num{font-weight:900;font-size:3rem;line-height:1;color:var(--t1)}
+.pow-num{font-weight:900;font-size:3rem;line-height:1;color:var(--t1); text-shadow: 0 0 10px var(--t1);}
 .pow-unit{font-size:.85rem;color:var(--t2);font-weight:700}
 .pow-bar-wrap{width:100%;height:8px;background:var(--vl);border-radius:100px;margin-bottom:16px;overflow:hidden;margin-top:10px}
-.pow-bar{height:100%;background:linear-gradient(90deg,var(--b),var(--v),var(--p));border-radius:100px;transition:width .3s}
-.pow-btn{background:var(--vl);color:var(--v);border:none;padding:12px 24px;border-radius:100px;font-weight:800;font-size:1rem;cursor:pointer;width:100%; transition: 0.2s;}
-.pow-btn:hover{background:var(--v);color:var(--white); transform:scale(1.02);}
+.pow-bar{height:100%;background:linear-gradient(90deg,var(--neon-b),var(--neon-v),var(--neon-p));border-radius:100px;transition:width .3s}
+.pow-btn{background:var(--vl);color:var(--neon-v);border:none;padding:12px 24px;border-radius:100px;font-weight:800;font-size:1rem;cursor:pointer;width:100%; transition: 0.2s;}
+.pow-btn:hover{background:var(--neon-v);color:var(--white); transform:scale(1.02);}
 .pow-msg{font-size:.85rem;color:var(--t2);margin-top:12px;font-weight:700}
-.plus1{position:absolute;color:var(--p);font-weight:900;animation:p1 .8s forwards;pointer-events:none}
+.plus1{position:absolute;color:var(--neon-p);font-weight:900;animation:p1 .8s forwards;pointer-events:none}
 @keyframes p1{0%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-40px)}}
 .footer{text-align:center;padding:3rem 24px;color:var(--t2);font-weight:700;font-size:.9rem}
 
@@ -214,13 +252,26 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
   .cont-label { font-size: 1.1rem; }
 }
 
-/* 背景星光粒子特效 */
-.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
-.particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
-@keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
+/* ====== 动态视频壁纸专属样式 (强制底层) ====== */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;     /* 保证视频等比例铺满全屏，绝不拉伸变形 */
+  z-index: -10;          /* 强制沉降到真正的最底层 */
+  pointer-events: none;  /* 鼠标穿透，绝对不会影响你点击地图和按钮 */
+}
+
+/* 背景星光粒子移除了，因为视频壁纸本身已足够丰富 */
 </style>
 </head>
-<body>
+<body style="background: transparent;">
+
+<video class="video-bg" autoplay loop muted playsinline>
+  <source src="个人主页首页动态壁纸.mp4" type="video/mp4">
+</video>
 
 <nav class="nav">
   <div class="nav-links">
@@ -236,89 +287,56 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 
 <section id="hero">
 
-  <div class="marine whale">🐋</div>
-  <div class="marine dolphin">🐬</div>
-
   <div class="map-layer">
+    <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
+      <div class="island-anim anim-edu">📖<span class="math-sym sym1">∑</span><span class="math-sym sym2">∫</span><span class="math-sym sym3">{ }</span></div>
+    </div>
     
-    <div class="continent-wrapper cont-tl">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-tl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFAEC9"/><stop offset="100%" stop-color="#FF2D78"/></linearGradient></defs>
-        <path d="M 0 0 L 100 0 C 80 20, 90 45, 65 55 C 40 65, 45 90, 35 90 C 30 100, 10 95, 0 100 Z" fill="url(#g-tl)" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="island-content">
-        <div class="anim-edu">📖<span class="math-sym sym1">∑</span><span class="math-sym sym2">∫</span><span class="math-sym sym3">{ }</span></div>
+    <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
+      <div class="island-anim anim-res">🔬<span class="bubble b1">🫧</span><span class="bubble b2">🫧</span></div>
+    </div>
+    
+    <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
+      <div class="island-anim anim-life">
+        <div class="mini-cat">🐱</div>
+        <svg viewBox="0 0 200 200" class="f1-track-svg">
+          <path id="f1-mini-path" d="M 160 100 A 70 40 0 1 0 20 100 A 70 40 0 1 0 160 100 Z" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
+          <text class="f1-car" text-anchor="middle" dominant-baseline="central">🏎️
+             <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
+          </text>
+        </svg>
       </div>
     </div>
     
-    <div class="continent-wrapper cont-tr">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFDF73"/><stop offset="100%" stop-color="#FFB700"/></linearGradient></defs>
-        <path d="M 0 0 L 100 0 L 100 100 C 95 80, 80 90, 60 70 C 45 55, 30 50, 15 35 C 5 20, 15 10, 0 0 Z" fill="url(#g-tr)" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="island-content">
-        <div class="anim-res">🔬<span class="bubble b1">🫧</span><span class="bubble b2">🫧</span></div>
-      </div>
+    <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
+      <div class="island-anim anim-ppl">⛺<div class="letter">✉️</div><span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span></div>
     </div>
-    
-    <div class="continent-wrapper cont-bl">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-bl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7CD6FF"/><stop offset="100%" stop-color="#00AAFF"/></linearGradient></defs>
-        <path d="M 0 100 L 100 100 C 80 80, 95 60, 70 45 C 55 35, 40 25, 25 10 C 15 0, 5 15, 0 0 Z" fill="url(#g-bl)" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="island-content">
-        <div class="anim-life">
-          <div class="mini-cat">🐱</div>
-          <svg viewBox="0 0 200 200" class="f1-track-svg">
-            <path id="f1-mini-path" d="M 160 100 A 60 40 0 1 0 40 100 A 60 40 0 1 0 160 100 Z" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
-            <text class="f1-car" text-anchor="middle" dominant-baseline="central">🏎️
-               <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
-            </text>
-          </svg>
-        </div>
-      </div>
-    </div>
-    
-    <div class="continent-wrapper cont-br">
-      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
-        <defs><linearGradient id="g-br" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D09CFF"/><stop offset="100%" stop-color="#9B00FF"/></linearGradient></defs>
-        <path d="M 100 100 L 0 100 C 20 85, 5 65, 30 50 C 45 40, 60 25, 75 10 C 85 0, 95 15, 100 0 Z" fill="url(#g-br)" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="island-content">
-        <div class="anim-ppl">
-          ⛺<div class="letter">✉️</div>
-          <span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <div class="global-routes">
-    <div class="cont-label label-tl" data-i18n="map.edu">对白·无言之书</div>
-    <div class="cont-label label-tr" data-i18n="map.res">求证·大地的底稿</div>
-    <div class="cont-label label-bl" data-i18n="map.life">漫游·心底的牧场</div>
-    <div class="cont-label label-br" data-i18n="map.ppl">相望·最近的灯火</div>
+    <div class="global-label label-tl" data-i18n="map.edu">对白·无言之书</div>
+    <div class="global-label label-tr" data-i18n="map.res">求证·大地的底稿</div>
+    <div class="global-label label-bl" data-i18n="map.life">漫游·心底的牧场</div>
+    <div class="global-label label-br" data-i18n="map.ppl">相望·最近的灯火</div>
 
-    <svg class="plane-svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:100%; height:100%;">
-      <path id="plane-path" d="M 25 25 A 35.35 35.35 0 0 1 75 25 A 35.35 35.35 0 0 1 75 75 A 35.35 35.35 0 0 1 25 75 A 35.35 35.35 0 0 1 25 25 Z" fill="none" stroke="rgba(155,0,255,0.2)" stroke-width="0.3" stroke-dasharray="1.5 1.5"/>
-      <g filter="drop-shadow(1px 2px 1px rgba(0,0,0,0.3))">
-        <text font-size="5" text-anchor="middle" dominant-baseline="central">✈️
-          <animateMotion dur="24s" repeatCount="indefinite" rotate="auto" 
-            calcMode="spline" 
-            keyTimes="0; 0.166; 0.25; 0.416; 0.5; 0.666; 0.75; 0.916; 1" 
-            keyPoints="0; 0.25; 0.25; 0.5; 0.5; 0.75; 0.75; 1; 1"
-            keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
-            <mpath href="#plane-path"/>
-          </animateMotion>
-        </text>
-      </g>
-
-      <path id="ship-path" d="M 85 35 Q 75 57.5 85 80 A 2 2 0 0 0 89 80 Q 99 57.5 89 35 A 2 2 0 0 0 85 35 Z" fill="none" stroke="rgba(0,170,255,0.3)" stroke-width="0.4" stroke-dasharray="1 1"/>
-      <text font-size="4" text-anchor="middle" dominant-baseline="central" filter="drop-shadow(1px 2px 1px rgba(0,0,0,0.3))">🚢
-        <animateMotion dur="20s" repeatCount="indefinite" rotate="auto"><mpath href="#ship-path"/></animateMotion>
-      </text>
+    <svg style="position: absolute; width: 0; height: 0;">
+      <defs>
+        <path id="plane-path" d="M 18 18 A 35.35 35.35 0 0 1 82 18 A 35.35 35.35 0 0 1 82 82 A 35.35 35.35 0 0 1 18 82 A 35.35 35.35 0 0 1 18 18 Z" />
+      </defs>
     </svg>
+    
+    <div class="plane">
+      ✈️
+      <animateMotion dur="24s" repeatCount="indefinite" rotate="auto" 
+        calcMode="spline" 
+        keyTimes="0; 0.166; 0.25; 0.416; 0.5; 0.666; 0.75; 0.916; 1" 
+        keyPoints="0; 0.25; 0.25; 0.5; 0.5; 0.75; 0.75; 1; 1"
+        keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
+        <mpath href="#plane-path"/>
+      </animateMotion>
+    </div>
+
+    <div class="ship-route"><div class="ship">🚢</div></div>
   </div>
 
   <div class="ctr flip-container" style="pointer-events: none;">
@@ -329,7 +347,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
           <div class="h-avatar-wrap"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
           <div class="intro-text-side">
             <div class="h-badge">🌸 <span data-i18n="hero.badge">UCSD 2029届 · 圣地亚哥</span></div>
-            <h1 class="h-name">Zhen<br><span class="rainbow" data-i18n="hero.name2">Wang ✦</span></h1>
+            <h1 class="h-name rainbow">Zhen<br><span data-i18n="hero.name2">Wang ✦</span></h1>
           </div>
         </div>
         <div class="h-typing">
@@ -345,15 +363,15 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 
       <div class="flip-back" style="pointer-events: auto;">
         <div class="resume-name" data-i18n="res.name">王臻 Zhen Wang</div>
-        <div class="res-row"><span class="res-icon">📱</span> <span data-i18n="res.phone">手机 Phone: +86 15205181003 / +1 858-220-8768</span></div>
-        <div class="res-row"><span class="res-icon">📧</span> <span data-i18n="res.email">邮箱 Email: zhw124@ucsd.edu</span></div>
-        <div class="res-row"><span class="res-icon">🎂</span> <span data-i18n="res.dob">出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male</span></div>
-        <div class="res-row"><span class="res-icon">📍</span> <span data-i18n="res.loc">所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego</span></div>
+        <div class="res-row"><span class="res-icon ri-p">📱</span> <span data-i18n="res.phone">手机 Phone: +86 15205181003 / +1 858-220-8768</span></div>
+        <div class="res-row"><span class="res-icon ri-p">📧</span> <span data-i18n="res.email">邮箱 Email: zhw124@ucsd.edu</span></div>
+        <div class="res-row"><span class="res-icon ri-p">🎂</span> <span data-i18n="res.dob">出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male</span></div>
+        <div class="res-row"><span class="res-icon ri-b">📍</span> <span data-i18n="res.loc">所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego</span></div>
         
         <hr style="margin: 15px 0; border: none; border-top: 2px dashed rgba(155,0,255,0.2);">
         
         <div class="edu-box">
-          <div class="edu-title" data-i18n="res.edu1t">🎓 加州大学圣地亚哥分校 (UCSD)</div>
+          <div class="edu-title" data-i18n="res.edu1t">🎓 UC San Diego (UCSD)</div>
           <div class="edu-sub" data-i18n="res.edu1s">本科 | 2025.09 - 至今 (Present)</div>
         </div>
         <div class="edu-box">
@@ -376,7 +394,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
       <div class="exp-card"><div class="e-icon ei-p">⚡</div><div>
         <div class="e-org" data-i18n="e1.org">UCSD · 独立本科科研项目</div>
         <div class="e-role" data-i18n="e1.role">独立研究员 — 边缘 AI 热节流效应研究</div>
-        <div class="chip c-p" data-i18n="e1.date">2026.03 – 至今</div>
+        <div class="chip c-p" data-i18n="e1.date">2026.03 – Present</div>
         <ul class="e-ul"><li data-i18n="e1.b1"></li><li data-i18n="e1.b2"></li><li data-i18n="e1.b3"></li></ul>
       </div></div>
       <div class="exp-card"><div class="e-icon ei-v">🧠</div><div>
@@ -493,7 +511,7 @@ function toggleFlip() {
   document.getElementById('flipCard').classList.toggle('is-flipped');
 }
 
-/* ====== 🌍 坚如磐石的双语字典 🌍 ====== */
+/* ====== 🌍 坚如磐石的双语字典 (反转背面绝对覆盖翻译) 🌍 ====== */
 const T={
 zh:{
 'map.edu': '对白·无言之书', 'map.res': '求证·大地的底稿', 'map.life': '漫游·心底的牧场', 'map.ppl': '相望·最近的灯火',
@@ -507,7 +525,7 @@ zh:{
 'res.edu2t': '🏫 上海市世外中学 (WFLA)', 'res.edu2s': '高中 | 2022.09 - 2025.06',
 'res.back': '↩ 返回正面界面',
 'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
-'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
+'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – Present','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
 'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
 'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
@@ -520,7 +538,7 @@ zh:{
 },
 en:{
 'map.edu': 'In-Class Learning', 'map.res': 'Research & Projects', 'map.life': 'Daily Life & Hobbies', 'map.ppl': 'Connections',
-'hero.cta1':'Explore Me', 'hero.cta2':'Click to view personal info',
+'hero.cta1':'深入探索我', 'hero.cta2':'Click to view personal info',
 'res.name': 'Zhen Wang',
 'res.phone': 'Phone: +86 15205181003 / +1 858-220-8768',
 'res.email': 'Email: zhw124@ucsd.edu',
@@ -547,7 +565,7 @@ en:{
 'sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.',
 'sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.',
 'sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.',
-'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 Rolex Shanghai Masters 🎾','moment1.location': 'Qi Zhong Tennis Center, Shanghai','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
+'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 at Rolex Shanghai Masters 🎾','moment1.location': 'Qi Zhong Tennis Center, Shanghai','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
 }};
 
 let lang='zh';
@@ -564,24 +582,7 @@ const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊
 initPow();
 typeEffect();
 
-/* 背景星光粒子 */
-function createParticles(){
-  const bg=document.createElement('div');
-  bg.className='particles-bg';
-  document.body.appendChild(bg);
-  for(let i=0;i<40;i++){
-    let p=document.createElement('div');
-    p.className='particle';
-    p.style.left=Math.random()*100+'vw';
-    p.style.animationDuration=(Math.random()*15+10)+'s';
-    p.style.animationDelay='-'+(Math.random()*20)+'s';
-    const size=Math.random()*3+2;
-    p.style.width=size+'px';
-    p.style.height=size+'px';
-    bg.appendChild(p);
-  }
-}
-createParticles();
+/*背景视频已沉底，移除了粒子特效 */
 
 applyLang();const originalApplyLang=applyLang;applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
 </script>
