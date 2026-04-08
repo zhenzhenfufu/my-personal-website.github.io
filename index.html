@@ -39,28 +39,45 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 @keyframes swim-whale { 0% { left: -20%; transform: rotate(5deg); } 50% { transform: rotate(-5deg) translateY(-40px); } 100% { left: 120%; transform: rotate(5deg); } }
 @keyframes swim-dolphin { 0% { right: -20%; transform: scaleX(-1) rotate(5deg); } 50% { transform: scaleX(-1) rotate(-5deg) translateY(-20px); } 100% { right: 120%; transform: scaleX(-1) rotate(5deg); } }
 
-/* ================= 真实圆润的大陆地貌 (Blob 流体) ================= */
+/* ================= 真实凹凸自然大陆 (SVG Path) ================= */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+.continent-wrapper { position: absolute; width: 45vw; height: 45vh; min-width: 320px; min-height: 320px; }
+.cont-tl { top: 0; left: 0; }
+.cont-tr { top: 0; right: 0; }
+.cont-bl { bottom: 0; left: 0; }
+.cont-br { bottom: 0; right: 0; }
 
-.continent {
-  position: absolute; pointer-events: auto; cursor: pointer;
-  border: 5px solid rgba(255,255,255,0.7);
-  box-shadow: inset 0 0 30px rgba(255,255,255,0.4), 8px 12px 15px rgba(155,0,255,0.15);
+.island-path {
+  width: 100%; height: 100%; pointer-events: auto; cursor: pointer;
+  stroke: rgba(255,255,255,0.8); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round;
+  filter: drop-shadow(8px 12px 10px rgba(155,0,255,0.2));
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+  transform-origin: center;
 }
-.continent:hover { transform: scale(1.04) translateY(-10px); filter: brightness(1.08); z-index: 10; box-shadow: inset 0 0 40px rgba(255,255,255,0.6), 15px 20px 20px rgba(155,0,255,0.25); }
+.island-path:hover { transform: scale(1.03); filter: drop-shadow(15px 25px 15px rgba(155,0,255,0.3)) brightness(1.05); z-index: 20; }
 
-/* 四块极度圆润、形状各异的大陆 (彻底钝角) */
-.cont-tl { top: -10vh; left: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #FFAEC9, var(--p)); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-.cont-tr { top: -10vh; right: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #FFDF73, var(--y)); border-radius: 50% 50% 30% 70% / 60% 40% 70% 40%; }
-.cont-bl { bottom: -15vh; left: -10vw; width: 55vw; height: 55vh; background: linear-gradient(135deg, #7CD6FF, var(--b)); border-radius: 30% 70% 50% 50% / 40% 40% 60% 60%; } /* 漫游心底被特别放大 */
-.cont-br { bottom: -10vh; right: -10vw; width: 45vw; height: 45vh; background: linear-gradient(135deg, #D09CFF, var(--v)); border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; }
+/* ================= 极度精准的防遮挡文本与航线系统 ================= */
+/* 把文本提升到和航线同一层级，使用 VW/VH 保证全屏幕像素级对齐 */
+.global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 5; pointer-events: none; }
+
+.cont-label {
+  position: absolute; transform: translate(-50%, -50%);
+  font-family: var(--serf); font-weight: 900; font-size: 1.45rem; color: var(--white);
+  text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px rgba(155,0,255,0.4);
+  width: max-content; max-width: 220px; white-space: pre-wrap; word-break: keep-all; line-height: 1.35;
+}
+
+/* 完美定于四个 25% 极限界点 */
+.label-tl { top: 25vh; left: 25vw; text-align: center; }
+.label-tr { top: 25vh; left: 75vw; text-align: center; }
+.label-bl { top: 75vh; left: 25vw; text-align: center; }
+.label-br { top: 75vh; left: 75vw; text-align: center; }
 
 /* ================= 奇遇小动画层 ================= */
-.island-anim { position: absolute; pointer-events: none; z-index: 5; }
+.island-content { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 2;}
 
 /* 🎓 左上: 书本与学术 */
-.anim-edu { top: 45%; left: 55%; font-size: 3rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.anim-edu { position: absolute; top: 50%; left: 60%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
 .math-sym { position: absolute; font-family: var(--serf); font-weight: 900; color: #fff; font-size: 1.5rem; opacity: 0; animation: float-sym 3s ease-in infinite; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 .sym1 { top: -15px; left: -10px; animation-delay: 0s; }
 .sym2 { top: -25px; left: 25px; animation-delay: 1s; }
@@ -68,87 +85,27 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
 @keyframes float-sym { 0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 1; } 100% { transform: translateY(-50px) scale(1.3) rotate(15deg); opacity: 0; } }
 
 /* 🔬 右上: 显微镜气泡 */
-.anim-res { top: 50%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.anim-res { position: absolute; top: 55%; left: 40%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
 .bubble { position: absolute; font-size: 1.2rem; opacity: 0; animation: float-bubble 2s ease-in infinite; }
 .b1 { top: -5px; left: -10px; animation-delay: 0s; }
 .b2 { top: -20px; left: 10px; animation-delay: 1s; }
 @keyframes float-bubble { 0% { transform: translateY(0) scale(0.5); opacity: 1; } 100% { transform: translateY(-40px) scale(1.3); opacity: 0; } }
 
-/* 🏎️ 左下: 巨大F1赛道与安静猫咪 */
-.anim-life { top: 40%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 150px; }
-.mini-cat { position: absolute; top: 100px; right: 0; font-size: 2.8rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; }
+/* 🏎️ 左下: 巨大F1赛车与猫咪 (独立运作) */
+.anim-life { position: absolute; top: 35%; left: 65%; transform: translate(-50%, -50%); width: 200px; height: 150px; }
+.mini-cat { position: absolute; top: 120px; left: -50px; font-size: 3rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); animation: cat-blink 4s infinite; z-index: 2; }
 @keyframes cat-blink { 0%, 90%, 100% { content: '🐱'; } 95% { content: '😑'; } }
-/* F1 巨型专属赛道，正向行驶绝不倒车 */
-.f1-track-svg { position: absolute; top: 0; left: 0; width: 180px; height: 120px; }
-.f1-car { font-size: 2.5rem; filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.4)); }
+/* F1 巨型专属赛道，逆时针画道，正向行驶绝不倒车 */
+.f1-track-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 /* ⛺ 右下: 篝火信件 */
-.anim-ppl { top: 45%; left: 45%; font-size: 3.5rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
-.letter { position: absolute; font-size: 1.8rem; top: 20px; left: -30px; transform: rotate(-15deg); }
-.spark { position: absolute; width: 6px; height: 6px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 10px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
+.anim-ppl { position: absolute; top: 40%; left: 45%; font-size: 4rem; transform: translate(-50%, -50%); filter: drop-shadow(2px 4px 2px rgba(0,0,0,0.2)); }
+.letter { position: absolute; font-size: 2.2rem; top: 20px; left: -40px; transform: rotate(-15deg); }
+.spark { position: absolute; width: 8px; height: 8px; background: #FFD700; border-radius: 50%; box-shadow: 0 0 12px #FFD700; opacity: 0; animation: spark-fly 1.5s linear infinite; }
 .sp1 { top: 0; left: 20px; animation-delay: 0s; }
-.sp2 { top: 15px; left: 40px; animation-delay: 0.5s; }
-.sp3 { top: -10px; left: 30px; animation-delay: 1s; }
-@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-40px) scale(0.2); opacity: 0; } }
-
-/* ================= 🚀 顶级全屏坐标系 (文字、航线、飞机 绝对对齐) ================= */
-.global-routes { position: absolute; top:0; left:0; width:100%; height:100%; z-index: 4; pointer-events: none; }
-
-/* 文字永远防换行、防遮挡，独立于岛屿之外悬浮 */
-.global-label {
-  position: absolute; transform: translate(-50%, -50%);
-  font-family: var(--serf); font-weight: 900; font-size: 1.5rem; color: var(--white);
-  text-shadow: 0 3px 6px rgba(0,0,0,0.5), 0 0 12px rgba(155,0,255,0.6);
-  white-space: nowrap; letter-spacing: 2px; transition: transform 0.3s ease;
-}
-
-/* 完美对齐的四个基准点坐标 */
-/* TL = 18vw, 18vh */
-/* TR = 82vw, 18vh */
-/* BR = 82vw, 82vh */
-/* BL = 18vw, 82vh */
-.label-tl { top: 18vh; left: 18vw; }
-.label-tr { top: 18vh; left: 82vw; }
-.label-br { top: 82vh; left: 82vw; }
-.label-bl { top: 82vh; left: 18vw; }
-
-/* ✈️ 完美停站航线系统 (无变形，顺畅抛物线) */
-.plane-svg { position: absolute; top:0; left:0; width:100%; height:100%; }
-.plane { position: absolute; font-size: 2.8rem; margin-top: -1.4rem; margin-left: -1.4rem; filter: drop-shadow(4px 8px 4px rgba(0,0,0,0.4)); animation: plane-fly 24s infinite; }
-
-@keyframes plane-fly {
-  /* TL (对白) - 停顿 */
-  0%, 10% { top: 18vh; left: 18vw; transform: rotate(90deg); }
-  /* 抛物线顶点 1 */
-  15% { top: 5vh; left: 50vw; transform: rotate(90deg); }
-  /* TR (求证) - 停顿 */
-  20%, 30% { top: 18vh; left: 82vw; transform: rotate(180deg); }
-  /* 抛物线顶点 2 */
-  40% { top: 50vh; left: 95vw; transform: rotate(180deg); }
-  /* BR (相望) - 停顿 */
-  50%, 60% { top: 82vh; left: 82vw; transform: rotate(270deg); }
-  /* 抛物线顶点 3 */
-  65% { top: 95vh; left: 50vw; transform: rotate(270deg); }
-  /* BL (漫游) - 停顿 */
-  70%, 80% { top: 82vh; left: 18vw; transform: rotate(360deg); }
-  /* 抛物线顶点 4 */
-  90% { top: 50vh; left: 5vw; transform: rotate(360deg); }
-  /* 回到 TL */
-  100% { top: 18vh; left: 18vw; transform: rotate(450deg); }
-}
-
-/* 🚢 轮船水平相邻航线 (只在底部 BL 和 BR 之间往返，远离陆地) */
-.ship-route { position: absolute; bottom: 8vh; left: 25vw; width: 50vw; height: 0; border-bottom: 3px dashed rgba(0, 170, 255, 0.4); z-index: 3; pointer-events: none;}
-.ship { position: absolute; top: -35px; font-size: 3.5rem; filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.4)); animation: ship-horizontal 20s ease-in-out infinite; }
-@keyframes ship-horizontal {
-  0% { left: 0%; transform: scaleX(-1) rotate(-5deg); }
-  10% { left: 0%; transform: scaleX(-1) rotate(5deg); } /* 停靠青岛港 */
-  45% { left: 100%; transform: scaleX(-1) rotate(-5deg); } 
-  50% { left: 100%; transform: scaleX(1) rotate(5deg); } /* 抵达紫岛港，转身 */
-  60% { left: 100%; transform: scaleX(1) rotate(-5deg); }
-  90% { left: 0%; transform: scaleX(1) rotate(5deg); }
-  100% { left: 0%; transform: scaleX(-1) rotate(-5deg); } /* 返回调头 */
-}
+.sp2 { top: 15px; left: 45px; animation-delay: 0.5s; }
+.sp3 { top: -10px; left: 35px; animation-delay: 1s; }
+@keyframes spark-fly { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-50px) scale(0.2); opacity: 0; } }
 
 /* ================= 玻璃态护盾 3D 翻转系统 ================= */
 .flip-container { perspective: 1500px; width: 100%; min-height: 480px; position: relative; z-index: 20; pointer-events: auto; max-width: 680px; margin: 0 auto; }
@@ -257,7 +214,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
   .cont-label { font-size: 1.1rem; }
 }
 
-/* 背景星光粒子 */
+/* 背景星光粒子特效 */
 .particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
 .particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
 @keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
@@ -283,45 +240,85 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg-ocean);color:var(--t
   <div class="marine dolphin">🐬</div>
 
   <div class="map-layer">
-    <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
-      <div class="island-anim anim-edu">📖<span class="math-sym sym1">∑</span><span class="math-sym sym2">∫</span><span class="math-sym sym3">{ }</span></div>
-    </div>
     
-    <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
-      <div class="island-anim anim-res">🔬<span class="bubble b1">🫧</span><span class="bubble b2">🫧</span></div>
-    </div>
-    
-    <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
-      <div class="island-anim anim-life">
-        <div class="mini-cat">🐱</div>
-        <svg viewBox="0 0 200 200" class="f1-track-svg">
-          <path id="f1-mini-path" d="M 170 100 A 70 40 0 1 0 30 100 A 70 40 0 1 0 170 100 Z" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="4" stroke-dasharray="8 8"/>
-          <g transform="translate(0, -18)">
-            <text class="f1-car" transform="rotate(180)">🏎️
-               <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
-            </text>
-          </g>
-        </svg>
+    <div class="continent-wrapper cont-tl">
+      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
+        <defs><linearGradient id="g-tl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFAEC9"/><stop offset="100%" stop-color="#FF2D78"/></linearGradient></defs>
+        <path d="M 0 0 L 100 0 C 80 20, 90 45, 65 55 C 40 65, 45 90, 35 90 C 30 100, 10 95, 0 100 Z" fill="url(#g-tl)" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="island-content">
+        <div class="anim-edu">📖<span class="math-sym sym1">∑</span><span class="math-sym sym2">∫</span><span class="math-sym sym3">{ }</span></div>
       </div>
     </div>
     
-    <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
-      <div class="island-anim anim-ppl">⛺<div class="letter">✉️</div><span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span></div>
+    <div class="continent-wrapper cont-tr">
+      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
+        <defs><linearGradient id="g-tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFDF73"/><stop offset="100%" stop-color="#FFB700"/></linearGradient></defs>
+        <path d="M 0 0 L 100 0 L 100 100 C 95 80, 80 90, 60 70 C 45 55, 30 50, 15 35 C 5 20, 15 10, 0 0 Z" fill="url(#g-tr)" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="island-content">
+        <div class="anim-res">🔬<span class="bubble b1">🫧</span><span class="bubble b2">🫧</span></div>
+      </div>
     </div>
+    
+    <div class="continent-wrapper cont-bl">
+      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
+        <defs><linearGradient id="g-bl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7CD6FF"/><stop offset="100%" stop-color="#00AAFF"/></linearGradient></defs>
+        <path d="M 0 100 L 100 100 C 80 80, 95 60, 70 45 C 55 35, 40 25, 25 10 C 15 0, 5 15, 0 0 Z" fill="url(#g-bl)" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="island-content">
+        <div class="anim-life">
+          <div class="mini-cat">🐱</div>
+          <svg viewBox="0 0 200 200" class="f1-track-svg">
+            <path id="f1-mini-path" d="M 160 100 A 60 40 0 1 0 40 100 A 60 40 0 1 0 160 100 Z" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
+            <text class="f1-car" text-anchor="middle" dominant-baseline="central">🏎️
+               <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"><mpath href="#f1-mini-path"/></animateMotion>
+            </text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <div class="continent-wrapper cont-br">
+      <svg class="island-path" viewBox="0 0 100 100" preserveAspectRatio="none" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
+        <defs><linearGradient id="g-br" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D09CFF"/><stop offset="100%" stop-color="#9B00FF"/></linearGradient></defs>
+        <path d="M 100 100 L 0 100 C 20 85, 5 65, 30 50 C 45 40, 60 25, 75 10 C 85 0, 95 15, 100 0 Z" fill="url(#g-br)" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="island-content">
+        <div class="anim-ppl">
+          ⛺<div class="letter">✉️</div>
+          <span class="spark sp1"></span><span class="spark sp2"></span><span class="spark sp3"></span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="global-routes">
-    <div class="global-label label-tl" data-i18n="map.edu">对白·无言之书</div>
-    <div class="global-label label-tr" data-i18n="map.res">求证·大地的底稿</div>
-    <div class="global-label label-bl" data-i18n="map.life">漫游·心底的牧场</div>
-    <div class="global-label label-br" data-i18n="map.ppl">相望·最近的灯火</div>
+    <div class="cont-label label-tl" data-i18n="map.edu">对白·无言之书</div>
+    <div class="cont-label label-tr" data-i18n="map.res">求证·大地的底稿</div>
+    <div class="cont-label label-bl" data-i18n="map.life">漫游·心底的牧场</div>
+    <div class="cont-label label-br" data-i18n="map.ppl">相望·最近的灯火</div>
 
-    <svg class="plane-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path d="M 18 18 Q 50 5 82 18 Q 95 50 82 82 Q 50 95 18 82 Q 5 50 18 18 Z" fill="none" stroke="rgba(155,0,255,0.2)" stroke-width="0.3" stroke-dasharray="1 1"/>
+    <svg class="plane-svg" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:100%; height:100%;">
+      <path id="plane-path" d="M 25 25 A 35.35 35.35 0 0 1 75 25 A 35.35 35.35 0 0 1 75 75 A 35.35 35.35 0 0 1 25 75 A 35.35 35.35 0 0 1 25 25 Z" fill="none" stroke="rgba(155,0,255,0.2)" stroke-width="0.3" stroke-dasharray="1.5 1.5"/>
+      <g filter="drop-shadow(1px 2px 1px rgba(0,0,0,0.3))">
+        <text font-size="5" text-anchor="middle" dominant-baseline="central">✈️
+          <animateMotion dur="24s" repeatCount="indefinite" rotate="auto" 
+            calcMode="spline" 
+            keyTimes="0; 0.166; 0.25; 0.416; 0.5; 0.666; 0.75; 0.916; 1" 
+            keyPoints="0; 0.25; 0.25; 0.5; 0.5; 0.75; 0.75; 1; 1"
+            keySplines="0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1; 0.4 0 0.6 1; 0 0 1 1">
+            <mpath href="#plane-path"/>
+          </animateMotion>
+        </text>
+      </g>
+
+      <path id="ship-path" d="M 85 35 Q 75 57.5 85 80 A 2 2 0 0 0 89 80 Q 99 57.5 89 35 A 2 2 0 0 0 85 35 Z" fill="none" stroke="rgba(0,170,255,0.3)" stroke-width="0.4" stroke-dasharray="1 1"/>
+      <text font-size="4" text-anchor="middle" dominant-baseline="central" filter="drop-shadow(1px 2px 1px rgba(0,0,0,0.3))">🚢
+        <animateMotion dur="20s" repeatCount="indefinite" rotate="auto"><mpath href="#ship-path"/></animateMotion>
+      </text>
     </svg>
-    <div class="plane">✈️</div>
-
-    <div class="ship-route"><div class="ship">🚢</div></div>
   </div>
 
   <div class="ctr flip-container" style="pointer-events: none;">
@@ -496,7 +493,7 @@ function toggleFlip() {
   document.getElementById('flipCard').classList.toggle('is-flipped');
 }
 
-/* ====== 🌍 坚如磐石的双语字典 (反转背面绝对覆盖翻译) 🌍 ====== */
+/* ====== 🌍 坚如磐石的双语字典 🌍 ====== */
 const T={
 zh:{
 'map.edu': '对白·无言之书', 'map.res': '求证·大地的底稿', 'map.life': '漫游·心底的牧场', 'map.ppl': '相望·最近的灯火',
