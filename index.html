@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>王臻 ✦ 个人空间</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* 全局丝滑滚动 */
 html { scroll-behavior: smooth; }
@@ -45,50 +45,89 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   background-size: 30px 30px;
 }
 
-/* 4块多巴胺大陆 - 自然渐变地貌 */
+/* 4块多巴胺大陆 - 极致美化版 */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
 .continent {
-  position: absolute; border: 4px solid var(--white);
-  box-shadow: 6px 10px 0px rgba(155, 0, 255, 0.12), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
+  position: absolute; 
+  border: 4px solid var(--white);
+  /* 增加了一层浅色海岸线 outline，以及更深的侧向阴影 */
+  outline: 6px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 10px 15px 0px rgba(155, 0, 255, 0.1), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
   opacity: 0.95; overflow: hidden;
-  pointer-events: auto; /* 让大陆支持点击 */
+  pointer-events: auto; 
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+  /* 让背景叠加漫画波点效果 */
+  background-blend-mode: overlay;
 }
 .continent:hover {
   transform: scale(1.05) translateY(-5px);
-  filter: brightness(1.05);
-  box-shadow: 10px 15px 0px rgba(155, 0, 255, 0.15), inset -5px -5px 15px rgba(255, 255, 255, 0.6);
+  filter: brightness(1.08);
+  box-shadow: 12px 20px 0px rgba(155, 0, 255, 0.15), inset -5px -5px 15px rgba(255, 255, 255, 0.6);
   z-index: 10;
 }
 
-/* 各个大陆渐变色配置 */
-.cont-tl { top:-5%; left:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #FFAEC9, var(--p)); border-radius:40% 60% 70% 30%/40% 50% 60% 50%; }
-.cont-tr { top:-10%; right:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #FFDF73, var(--y)); border-radius:50% 50% 30% 70%/60% 40% 70% 40%; }
-.cont-bl { bottom:-10%; left:-5%; width:45%; height:45%; min-width:220px; min-height:220px; background: linear-gradient(135deg, #7CD6FF, var(--b)); border-radius:30% 70% 50% 50%/40% 40% 60% 60%; }
-.cont-br { bottom:-5%; right:-5%; width:40%; height:40%; min-width:200px; min-height:200px; background: linear-gradient(135deg, #D09CFF, var(--v)); border-radius:60% 40% 50% 50%/50% 60% 40% 50%; }
+/* 各个大陆渐变色 + 二次元漫画波点纹理 */
+.cont-tl { 
+  top:-5%; left:-5%; width:45%; height:45%; min-width:200px; min-height:200px; 
+  background: linear-gradient(135deg, #FFAEC9, var(--p)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius:40% 60% 70% 30%/40% 50% 60% 50%; 
+}
+.cont-tr { 
+  top:-10%; right:-5%; width:48%; height:48%; min-width:220px; min-height:220px; 
+  background: linear-gradient(135deg, #FFDF73, var(--y)), radial-gradient(rgba(255,255,255,0.25) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius:50% 50% 30% 70%/60% 40% 70% 40%; 
+}
+.cont-bl { 
+  bottom:-10%; left:-5%; width:48%; height:48%; min-width:220px; min-height:220px; 
+  background: linear-gradient(135deg, #7CD6FF, var(--b)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius:30% 70% 50% 50%/40% 40% 60% 60%; 
+}
+.cont-br { 
+  bottom:-5%; right:-5%; width:45%; height:45%; min-width:200px; min-height:200px; 
+  background: linear-gradient(135deg, #D09CFF, var(--v)), radial-gradient(rgba(255,255,255,0.2) 2px, transparent 2px);
+  background-size: 100% 100%, 15px 15px;
+  border-radius:60% 40% 50% 50%/50% 60% 40% 50%; 
+}
 
-/* 大陆中心文本标签 */
+/* 大陆中心文本标签 - 使用思源宋体艺术字，并推向对角线防遮挡 */
 .cont-label {
   position: absolute;
-  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
+  font-family: 'Noto Serif SC', serif; /* 高级诗意衬线体 */
   font-weight: 900;
-  font-size: 1.25rem;
+  font-size: 1.4rem; /* 稍微放大 */
   color: var(--white);
-  text-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  text-shadow: 0 4px 12px rgba(0,0,0,0.3);
   z-index: 10;
   text-align: center;
   white-space: nowrap;
-  letter-spacing: 1px;
-  transition: transform 0.3s ease;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 .continent:hover .cont-label {
-  transform: translate(-50%, -50%) scale(1.15);
+  transform: translate(-50%, -50%) scale(1.1);
+  text-shadow: 0 4px 20px rgba(255,255,255,0.6);
 }
 
+/* 精准坐标控制：彻底远离中间的护盾卡片 */
+.cont-tl .cont-label { top: 30%; left: 30%; }
+.cont-tl .m-icon { top: 45%; left: 45%; }
+
+.cont-tr .cont-label { top: 30%; left: 70%; }
+.cont-tr .m-icon { top: 45%; left: 55%; }
+
+.cont-bl .cont-label { top: 70%; left: 30%; }
+.cont-bl .m-icon { top: 55%; left: 45%; }
+
+.cont-br .cont-label { top: 70%; left: 70%; }
+.cont-br .m-icon { top: 55%; left: 55%; }
+
 .m-icon { position:absolute; font-size:2.2rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); z-index: 2; opacity: 0.85; transition: 0.3s; }
-.continent:hover .m-icon { transform: scale(1.1); }
+.continent:hover .m-icon { transform: scale(1.1) rotate(5deg); }
 
 /* 飞机与轮船动画 */
 .plane-free { position: absolute; z-index: 5; font-size: 2.5rem; animation: fly-curve 16s linear infinite; filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.25)); pointer-events: none; margin-top: -1.25rem; margin-left: -1.25rem; }
@@ -115,20 +154,20 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   100% { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
 }
 
-/* 玻璃态护盾与主页资料 */
-.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 50px 40px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 800px; margin: 0 auto; width: 100%; pointer-events: auto; }
+/* 玻璃态护盾：略微变窄，给两侧地图文字留出充足空间 */
+.glass-panel { position: relative; z-index: 10; background: rgba(255, 254, 245, 0.75); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 40px 30px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 2px solid rgba(255, 255, 255, 0.9); max-width: 720px; margin: 0 auto; width: 100%; pointer-events: auto; }
 .h-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
-.h-avatar-wrap{width:150px;height:150px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.5rem auto;overflow:hidden;transition:transform 0.3s ease}
+.h-avatar-wrap{width:140px;height:140px;border-radius:50%;border:4px solid var(--white);box-shadow:0 10px 25px rgba(155,0,255,0.15);margin:0 auto 1.2rem auto;overflow:hidden;transition:transform 0.3s ease}
 .h-avatar-wrap:hover{transform:scale(1.05) rotate(2deg)}
 .h-avatar-wrap img{width:100%;height:100%;object-fit:cover}
 .h-typing{font-size:1.25rem;font-weight:600;color:var(--t2);margin-bottom:1.5rem;margin-top:-0.5rem}
 .typewriter-text{color:var(--v);font-family:var(--mono)}
 .typewriter-cursor{display:inline-block;width:3px;background-color:var(--v);margin-left:4px;animation:blink 0.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.h-badge{display:inline-block;background:var(--white);padding:6px 16px;border-radius:100px;font-size:.85rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom:1.5rem}
-.h-name{font-family:var(--disp);font-size:4.5rem;line-height:1.1;color:var(--t1);margin-bottom:1rem}
+.h-badge{display:inline-block;background:var(--white);padding:6px 16px;border-radius:100px;font-size:.85rem;font-weight:800;color:var(--p);box-shadow:0 4px 12px rgba(255,45,120,.1);margin-bottom:1.2rem}
+.h-name{font-family:var(--disp);font-size:4.2rem;line-height:1.1;color:var(--t1);margin-bottom:1rem}
 .rainbow{background:linear-gradient(90deg,var(--p),var(--v),var(--b));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto}
+.h-desc{font-size:1.05rem;color:var(--t2);margin-bottom:2rem;max-width:550px;margin-left:auto;margin-right:auto}
 .h-btns{display:flex;gap:16px;justify-content:center;width:100%}
 .btn{text-decoration:none;padding:12px 28px;border-radius:100px;font-weight:800;transition:.2s;display:inline-block;z-index:1;cursor:pointer;}
 .btn-main{background:var(--v);color:var(--white);box-shadow:0 8px 24px rgba(155,0,255,.3)}
@@ -230,22 +269,22 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
     
     <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.edu">对白·无言之书</div>
-      <span class="m-icon" style="bottom:15%; right:15%">🌲</span>
+      <span class="m-icon">🌲</span>
     </div>
     
     <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.res">求证·大地的底稿</div>
-      <span class="m-icon" style="bottom:20%; left:15%">📍</span>
+      <span class="m-icon">📍</span>
     </div>
     
     <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.life">漫游·心底的牧场</div>
-      <span class="m-icon" style="top:20%; right:15%">🌴</span>
+      <span class="m-icon">🌴</span>
     </div>
     
     <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.ppl">相望·最近的灯火</div>
-      <span class="m-icon" style="top:20%; left:15%">⛺</span>
+      <span class="m-icon">⛺</span>
     </div>
     
     <svg preserveAspectRatio="none" viewBox="0 0 100 100" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; overflow: visible;">
@@ -401,12 +440,12 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 <script>
 const T={
 zh:{
-/* === 板块文字中英文 === */
-'map.edu': '课内学习经历',
-'map.res': '课外实践研究',
-'map.life': '日常兴趣生活',
-'map.ppl': '身边人',
-/* ===================== */
+/* 🚀 我在这里为你彻底更新了翻译字典！ */
+'map.edu': '对白·无言之书',
+'map.res': '求证·大地的底稿',
+'map.life': '漫游·心底的牧场',
+'map.ppl': '相望·最近的灯火',
+/* ================================== */
 'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
 'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
