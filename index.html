@@ -6,6 +6,9 @@
 <title>王臻 ✦ 个人空间</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Quicksand:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* 增加丝滑滚动特效 */
+html { scroll-behavior: smooth; }
+
 :root{--bg:#FFFEF5;--bg2:#F9F5FF;--white:#fff;--p:#FF2D78;--pl:#FFE5EE;--pd:#CC1155;--y:#FFB700;--yl:#FFF8DC;--g:#00CC88;--gl:#DCFFF5;--b:#00AAFF;--bl:#DCF4FF;--v:#9B00FF;--vl:#F2E5FF;--o:#FF6600;--ol:#FFF0E5;--t1:#180828;--t2:#5A3870;--t3:#C0A8D8;--brd:#EED8FF;--shd:rgba(155,0,255,.07);--disp:'Pacifico',cursive;--mono:'Space Mono',monospace}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;overflow-x:hidden}
@@ -44,7 +47,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 .s-title{font-size:2.5rem;font-weight:900;margin-bottom:3rem;line-height:1.2}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .exp-card{background:var(--white);padding:32px;border-radius:24px;box-shadow:0 12px 32px var(--shd);display:flex;gap:20px;border:1px solid var(--brd);transition:.3s;opacity:0;transform:translateY(20px)}
-.exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.12)}
+/* 悬浮阴影增强 */
+.exp-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(155,0,255,.18)}
 .exp-card.vis{opacity:1;transform:translateY(0)}
 .e-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
 .ei-p{background:var(--pl);color:var(--p)}.ei-v{background:var(--vl);color:var(--v)}.ei-b{background:var(--bl);color:var(--b)}.ei-g{background:var(--gl);color:var(--g)}
@@ -102,30 +106,29 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   .tl-row::after{left:24px}
   .tl-card{width:calc(100% - 56px);margin-left:auto!important}
 }
-  /* 动态星光粒子背景 */
+
+/* 升级版：动态星光粒子背景 */
 .particles-bg {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none; /* 确保不影响鼠标点击 */
-  z-index: 0;
+  z-index: 9999; /* 放置于顶层但透明 */
   overflow: hidden;
 }
 .particle {
   position: absolute;
   bottom: -10px;
-  width: 4px;
-  height: 4px;
-  background: var(--v); /* 采用你主题的科技紫 */
+  background: var(--v); /* 采用主题科技紫 */
   border-radius: 50%;
   opacity: 0;
   animation: floatUp linear infinite;
-  box-shadow: 0 0 8px var(--v); /* 增加一点发光质感 */
+  box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); /* 显著的发光增强 */
 }
 @keyframes floatUp {
-  0% { transform: translateY(0) scale(0.8); opacity: 0; }
-  20% { opacity: 0.4; }
-  80% { opacity: 0.1; }
-  100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  10% { opacity: 0.6; } /* 透明度提升，更亮 */
+  80% { opacity: 0.2; }
+  100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
 }
 </style>
 </head>
@@ -289,12 +292,12 @@ zh:{
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
 'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
 'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
-'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl7.ev':'📊 HDSI 数据科学院 RA','tl7.d':'加入 HDSI 课题组，参与数据科学教育研究，探索 Pandas Tutor 工具对教学流程的优化潜力。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
+'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
 'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
 'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。','p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。','p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。',
 'sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点',
 'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。','sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。',
-'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
+'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
 },
 en:{
 'nav.exp':'Experience','nav.tl':'Timeline','nav.proj':'Projects','nav.sk':'Skills','nav.mom':'Life','nav.ct':'Contact','hero.badge':'UCSD Class of 2029 · San Diego','hero.name2':'Wang ✦','hero.focus': 'I focus on: ','hero.desc':'Double-major in Data Science & Math-CS at UCSD, Edge AI efficiency researcher. Exploring the intersection of data, algorithms, and AI ✨','hero.cta1':'Say Hello','hero.cta2':'View My Work','pow.title':'Traveler Energy Station','pow.sub':'VISITOR ENERGY STATION','pow.unit':'energy received','pow.btn':'Charge +1','pow.msg0':'Hello traveler! Click to give me energy!','exp.tag':'Research & Experience','exp.title1':"What I've",'exp.title2':'built & studied',
@@ -302,7 +305,7 @@ en:{
 'e3.org':'Shanghai Jiao Tong University · Dept. of Psychology','e3.role':'Research Assistant — Child Development & Family Studies Lab','e3.date':'Jun 2024 – Sep 2025','e3.b1':'Processed 500+ hours of behavioral datasets under Prof. Xiaoning Sun.','e3.b2':'Managed assessment data in Stata & Excel; automated workflows, producing 95 standardized reports.','e3.b3':'Designed 60-variable survey instruments; conducted Wechsler & TEC assessments for 28 children.','e3.b4':'Reviewed papers for Developmental Psychology journal; delivered 10 methodology assessments weekly.',
 'e4.org':'Shanghai World Foreign Language Academy · Student Union','e4.role':'Practice Dept. Vice Minister','e4.date':'Sep 2023 – Sep 2024','e4.b1':'Managed a 108-member volunteer team, organizing museum, cultural, charity, and sports events.',
 'tl.tag':'Life Timeline','tl.title1':'Every step','tl.title2':'of the journey',
-'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl7.ev':'📊 HDSI Research Assistant','tl7.d':'Joined HDSI to work on data science education research, exploring Pandas Tutor for teaching optimization.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.',
+'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.',
 'proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped',
 'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.','p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.','p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐','p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.',
 'sk.tag':'Skill Tree','sk.title1':'My','sk.title2':'capabilities',
@@ -342,33 +345,30 @@ function typeEffect(){
   typingTimeout=setTimeout(typeEffect,speed);
 }
 initPow();typeEffect();
-  // ====== 动态星光粒子生成器 ======
+
+// ====== 升级版动态星光粒子生成器 ======
 function createParticles() {
   const bg = document.createElement('div');
   bg.className = 'particles-bg';
   document.body.appendChild(bg);
   
-  // 生成 40 个动态粒子
   for (let i = 0; i < 40; i++) {
     let p = document.createElement('div');
     p.className = 'particle';
-    // 随机水平位置
     p.style.left = Math.random() * 100 + 'vw';
-    // 随机漂浮速度 (10秒到30秒不等)
-    p.style.animationDuration = (Math.random() * 20 + 10) + 's';
-    // 随机出发延迟
-    p.style.animationDelay = (Math.random() * 10) + 's';
-    // 随机大小
+    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+    
+    // 关键修复：改为负数延迟！这样一打开网页，粒子就已经分布在屏幕的各个高度了
+    p.style.animationDelay = '-' + (Math.random() * 20) + 's'; 
+    
     const size = Math.random() * 3 + 2;
     p.style.width = size + 'px';
     p.style.height = size + 'px';
-    
     bg.appendChild(p);
   }
 }
-
-// 启动粒子效果
 createParticles();
+
 applyLang();
 const originalApplyLang=applyLang;
 applyLang=function(){originalApplyLang();clearTimeout(typingTimeout);isDeleting=false;typingCharIndex=0;typeEffect();};
