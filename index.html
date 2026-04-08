@@ -46,18 +46,20 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 }
 
 /* 4块多巴胺大陆 - 自然渐变地貌 */
-.map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+.map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
 .continent {
   position: absolute; border: 4px solid var(--white);
   box-shadow: 6px 10px 0px rgba(155, 0, 255, 0.12), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
   opacity: 0.95; overflow: hidden;
   pointer-events: auto; /* 让大陆支持点击 */
   cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
 }
 .continent:hover {
-  transform: scale(1.03);
+  transform: scale(1.05) translateY(-5px);
   filter: brightness(1.05);
+  box-shadow: 10px 15px 0px rgba(155, 0, 255, 0.15), inset -5px -5px 15px rgba(255, 255, 255, 0.6);
+  z-index: 10;
 }
 
 /* 各个大陆渐变色配置 */
@@ -71,10 +73,10 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-weight: 800;
-  font-size: 1.15rem;
+  font-weight: 900;
+  font-size: 1.25rem;
   color: var(--white);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  text-shadow: 0 4px 10px rgba(0,0,0,0.25);
   z-index: 10;
   text-align: center;
   white-space: nowrap;
@@ -82,10 +84,11 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   transition: transform 0.3s ease;
 }
 .continent:hover .cont-label {
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.15);
 }
 
-.m-icon { position:absolute; font-size:2rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); z-index: 2; opacity: 0.8; }
+.m-icon { position:absolute; font-size:2.2rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); z-index: 2; opacity: 0.85; transition: 0.3s; }
+.continent:hover .m-icon { transform: scale(1.1); }
 
 /* 飞机与轮船动画 */
 .plane-free { position: absolute; z-index: 5; font-size: 2.5rem; animation: fly-curve 16s linear infinite; filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.25)); pointer-events: none; margin-top: -1.25rem; margin-left: -1.25rem; }
@@ -203,7 +206,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 }
 
 /* 全局动态粒子 */
-.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; overflow: hidden; }
+.particles-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; }
 .particle { position: absolute; bottom: -10px; background: var(--v); border-radius: 50%; opacity: 0; animation: floatUp linear infinite; box-shadow: 0 0 10px var(--v), 0 0 20px var(--v); }
 @keyframes floatUp { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 10% { opacity: 0.6; } 80% { opacity: 0.2; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 </style>
@@ -224,22 +227,23 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 
 <section id="hero">
   <div class="map-layer">
-    <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView();">
+    
+    <div class="continent cont-tl" onclick="document.getElementById('timeline').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.edu">课内学习经历</div>
       <span class="m-icon" style="bottom:15%; right:15%">🌲</span>
     </div>
     
-    <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView();">
+    <div class="continent cont-tr" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.res">课外实践研究</div>
       <span class="m-icon" style="bottom:20%; left:15%">📍</span>
     </div>
     
-    <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView();">
+    <div class="continent cont-bl" onclick="document.getElementById('life').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.life">日常兴趣生活</div>
       <span class="m-icon" style="top:20%; right:15%">🌴</span>
     </div>
     
-    <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView();">
+    <div class="continent cont-br" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">
       <div class="cont-label" data-i18n="map.ppl">身边人</div>
       <span class="m-icon" style="top:20%; left:15%">⛺</span>
     </div>
@@ -255,7 +259,7 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
     <div class="ship-free">🚢</div>
   </div>
 
-  <div class="ctr" style="width: 100%;">
+  <div class="ctr" style="width: 100%; pointer-events: none;">
     <div class="glass-panel">
       <div class="h-inner">
         <div class="h-avatar-wrap"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
@@ -267,8 +271,8 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
         </div>
         <p class="h-desc" data-i18n="hero.desc">UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨</p>
         <div class="h-btns">
-          <a onclick="document.getElementById('contact').scrollIntoView();" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
-          <a onclick="document.getElementById('experience').scrollIntoView();" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
+          <a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" class="btn btn-main">✉ <span data-i18n="hero.cta1">打个招呼</span></a>
+          <a onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'});" class="btn btn-s"><span data-i18n="hero.cta2">查看我的经历</span> ↓</a>
         </div>
       </div>
     </div>
@@ -397,12 +401,12 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
 <script>
 const T={
 zh:{
-/* === 新增的四个板块文字中英文 === */
+/* === 板块文字中英文 === */
 'map.edu': '课内学习经历',
 'map.res': '课外实践研究',
 'map.life': '日常兴趣生活',
 'map.ppl': '身边人',
-/* ============================= */
+/* ===================== */
 'nav.exp':'经历','nav.tl':'时间轴','nav.proj':'项目','nav.sk':'技能','nav.mom':'生活','nav.ct':'联系','hero.badge':'UCSD 2029届 · 圣地亚哥','hero.name2':'Wang ✦','hero.focus':'我专注于：','hero.desc':'UCSD 数据科学 & 数学-计算机科学双专业在读，边缘 AI 能效研究员。在数据、算法和 AI 的交叉点探索世界 ✨','hero.cta1':'打个招呼','hero.cta2':'查看我的经历','pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
 'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
@@ -447,13 +451,15 @@ function applyLang(){document.querySelectorAll('[data-i18n]').forEach(el=>{const
 const MSGS={zh:['你好呀旅行者，快来给我充能吧！','谢谢你！能量+1 ⚡','哇！你真好！✨','满满的能量感谢你！🌟','宇宙最强充能者出现了！💫','已收到你的心意，感激不尽！❤️','充能完毕！战斗力 MAX！🔥','你让我今天很开心！🎉','收到你的能量了，好温暖～💝','神秘旅行者！感谢惠顾！✦'],en:['Hello traveler, click to power me up!','Thank you! Energy +1 ⚡',"Wow you're so kind! ✨",'Full of energy, thanks! 🌟',"Universe's top charger! 💫",'Your kindness received! ❤️','Fully charged! MAX! 🔥','You made my day! 🎉','Received your energy! 💝','Mystery traveler! Thank you! ✦']};
 const BAR_MAX=100;function getPow(){return parseInt(localStorage.getItem('pow_v2')||'0')}function setPow(n){localStorage.setItem('pow_v2',n)}function initPow(){const n=getPow();document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+n%BAR_MAX,100)+'%';updatePowMsg();}function addPower(){const n=getPow()+1;setPow(n);document.getElementById('powNum').textContent=n;document.getElementById('powBar').style.width=Math.min(2+(n%BAR_MAX),100)+'%';updatePowMsg(n);const btn=document.getElementById('powBtn');const p=document.createElement('span');p.className='plus1';p.textContent='+1 ⚡';p.style.cssText='top:0;left:50%;transform:translateX(-50%)';btn.parentElement.style.position='relative';btn.parentElement.appendChild(p);setTimeout(()=>p.remove(),1000);btn.style.transform='scale(.95)';setTimeout(()=>btn.style.transform='',150);}function updatePowMsg(n){const c=n||getPow();const msgs=MSGS[lang];const msg=c===0?msgs[0]:msgs[Math.min(Math.floor((c-1)%10),msgs.length-1)];document.getElementById('powMsg').textContent=msg;}
 
+/* 卡片滚动动画 */
 const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*70)});},{threshold:.08});document.querySelectorAll('.exp-card, .tl-row, .moment-card').forEach(el=>io.observe(el));
 
+/* 打字机特效 */
 const typeWords={zh:["边缘 AI 能效研究 ⚡","数据科学与自动化 📊","大规模数据流水线 💻","假设检验与量化分析 📝"],en:["Edge AI Efficiency ⚡","Data Science & Automation 📊","Large-scale Pipelines 💻","Quantitative Analysis 📝"]};let typingWordIndex=0,typingCharIndex=0,isDeleting=false,typingTimeout;function typeEffect(){const words=typeWords[lang];const currentWord=words[typingWordIndex];const el=document.getElementById("typewriter");if(!el)return;if(isDeleting){typingCharIndex--;}else{typingCharIndex++;}el.textContent=currentWord.substring(0,typingCharIndex);let speed=isDeleting?40:100;if(!isDeleting&&typingCharIndex===currentWord.length){speed=2000;isDeleting=true;}else if(isDeleting&&typingCharIndex===0){isDeleting=false;typingWordIndex=(typingWordIndex+1)%words.length;speed=500;}typingTimeout=setTimeout(typeEffect,speed);}
 initPow();
 typeEffect();
 
-/* 动态粒子生成 */
+/* 背景粒子生成 */
 function createParticles(){
   const bg=document.createElement('div');
   bg.className='particles-bg';
