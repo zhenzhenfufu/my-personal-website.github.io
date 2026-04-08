@@ -45,33 +45,37 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   background-size: 30px 30px;
 }
 
-/* 4块多巴胺大陆 - 插画伪3D质感 */
+/* 4块多巴胺大陆 - 渐变与伪3D质感 */
 .map-layer { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
 .continent {
   position: absolute; border: 4px solid var(--white);
-  /* 核心：厚重的单侧投影，打造图片里的贴纸/插画立体感 */
-  box-shadow: 6px 10px 0px rgba(155, 0, 255, 0.12), inset -5px -5px 15px rgba(255, 255, 255, 0.4);
+  /* 加深投影，让渐变大陆看起来更立体 */
+  box-shadow: 6px 10px 0px rgba(155, 0, 255, 0.12), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
   opacity: 0.95;
 }
-/* 左上 - 使用主页的粉色 (--p) */
+/* 左上 - 玫瑰粉渐变 */
 .cont-tl {
   top:-5%; left:-5%; width:40%; height:40%; min-width:200px; min-height:200px;
-  background-color: var(--p); border-radius:40% 60% 70% 30%/40% 50% 60% 50%;
+  background: linear-gradient(135deg, #FF8BB3, var(--p)); 
+  border-radius:40% 60% 70% 30%/40% 50% 60% 50%;
 }
-/* 右上 - 使用主页的明黄 (--y) */
+/* 右上 - 芒果黄渐变 */
 .cont-tr {
   top:-10%; right:-5%; width:45%; height:45%; min-width:220px; min-height:220px;
-  background-color: var(--y); border-radius:50% 50% 30% 70%/60% 40% 70% 40%;
+  background: linear-gradient(135deg, #FFE066, var(--y)); 
+  border-radius:50% 50% 30% 70%/60% 40% 70% 40%;
 }
-/* 左下 - 使用主页的天蓝 (--b) */
+/* 左下 - 海水蓝渐变 */
 .cont-bl {
   bottom:-10%; left:-5%; width:45%; height:45%; min-width:220px; min-height:220px;
-  background-color: var(--b); border-radius:30% 70% 50% 50%/40% 40% 60% 60%;
+  background: linear-gradient(135deg, #66CCFF, var(--b)); 
+  border-radius:30% 70% 50% 50%/40% 40% 60% 60%;
 }
-/* 右下 - 使用主页的紫色 (--v) */
+/* 右下 - 葡萄紫渐变 */
 .cont-br {
   bottom:-5%; right:-5%; width:40%; height:40%; min-width:200px; min-height:200px;
-  background-color: var(--v); border-radius:60% 40% 50% 50%/50% 60% 40% 50%;
+  background: linear-gradient(135deg, #C88BFF, var(--v)); 
+  border-radius:60% 40% 50% 50%/50% 60% 40% 50%;
 }
 .m-icon { position:absolute; font-size:2.5rem; filter:drop-shadow(3px 5px 2px rgba(0,0,0,0.15)); }
 
@@ -81,7 +85,39 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
   animation: fly-curve 16s linear infinite;
   filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.25));
   pointer-events: none;
-  margin-top: -1.25rem; margin-left: -1.25rem; /* 让飞机中心对齐轨道 */
+  margin-top: -1.25rem; margin-left: -1.25rem;
+}
+@keyframes fly-curve {
+  0%   { top: 80%; left: 15%; transform: rotate(-30deg) scale(0.8); }
+  12%  { top: 47%; left: 8%;  transform: rotate(15deg) scale(1.1); }
+  25%  { top: 15%; left: 15%; transform: rotate(60deg) scale(0.8); }
+  37%  { top: 8%;  left: 50%; transform: rotate(90deg) scale(1.1); }
+  50%  { top: 15%; left: 85%; transform: rotate(120deg) scale(0.8); }
+  62%  { top: 47%; left: 92%; transform: rotate(165deg) scale(1.1); }
+  75%  { top: 80%; left: 85%; transform: rotate(240deg) scale(0.8); }
+  87%  { top: 92%; left: 50%; transform: rotate(270deg) scale(1.1); }
+  100% { top: 80%; left: 15%; transform: rotate(330deg) scale(0.8); }
+}
+
+/* 轮船与航海线动画 */
+.ship-free {
+  position: absolute; z-index: 4; font-size: 2rem;
+  /* 轮船开得比飞机慢一点，增加层次感 */
+  animation: sail-route 24s ease-in-out infinite;
+  filter: drop-shadow(2px 6px 4px rgba(0,0,0,0.3));
+  pointer-events: none;
+  margin-top: -1rem; margin-left: -1rem;
+}
+@keyframes sail-route {
+  /* 轮船在下半部分海域穿梭，带有轻微的波浪摇晃 (rotate) */
+  0%   { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
+  20%  { top: 90%; left: 45%; transform: scale(1) scaleX(-1) rotate(3deg); }
+  40%  { top: 85%; left: 80%; transform: scale(0.8) scaleX(-1) rotate(-5deg); }
+  45%  { top: 85%; left: 80%; transform: scale(0.8) scaleX(1) rotate(5deg); } /* 原地掉头 */
+  60%  { top: 50%; left: 85%; transform: scale(0.6) scaleX(1) rotate(-2deg); }
+  80%  { top: 30%; left: 50%; transform: scale(0.5) scaleX(1) rotate(4deg); } /* 驶向远方变小 */
+  95%  { top: 85%; left: 10%; transform: scale(0.8) scaleX(1) rotate(-5deg); }
+  100% { top: 85%; left: 10%; transform: scale(0.8) scaleX(-1) rotate(-5deg); } /* 掉头重新开始 */
 }
 
 @keyframes fly-curve {
@@ -225,8 +261,13 @@ body{font-family:'Quicksand',sans-serif;background:var(--bg);color:var(--t1);lin
     <svg preserveAspectRatio="none" viewBox="0 0 100 100" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; overflow: visible;">
       <path d="M 15 80 Q 2 47.5 15 15 Q 50 2 85 15 Q 98 47.5 85 80 Q 50 98 15 80 Z" fill="none" stroke="var(--v)" stroke-width="0.4" stroke-dasharray="1.5 2" opacity="0.6" stroke-linecap="round"/>
     </svg>
+
+    <svg preserveAspectRatio="none" viewBox="0 0 100 100" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none; overflow: visible;">
+      <path d="M 10 85 Q 45 95 80 85 Q 90 50 50 30 Q 15 50 10 85 Z" fill="none" stroke="var(--b)" stroke-width="0.3" stroke-dasharray="2 4" opacity="0.4" stroke-linecap="round"/>
+    </svg>
     
     <div class="plane-free">✈️</div>
+    <div class="ship-free">🚢</div>
   </div>
 
   <div class="ctr" style="width: 100%;">
