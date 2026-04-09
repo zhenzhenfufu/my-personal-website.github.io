@@ -564,13 +564,24 @@ function createSparkles(){
   }
 }
 
-/* ================= 🧩 绝对坐标 8x6 = 48 块真实拼图引擎 (更新图片逻辑) ================= */
+/* ================= 🧩 绝对坐标 8x6 = 48 块真实拼图引擎 (合并全部 19 张图片) ================= */
 function createPuzzleGrid(){
   const grid = document.getElementById('puzzleGrid');
   if(!grid) return;
   
-  // 1. 定义上传的 8 张图片
+  // 1. 定义你上传的所有 19 张图片 (包括之前的二次元图片和最新上传的体育/二次元图片)
   const availableImages = [
+    'fc8437016dd85340cde28c1cbfb02cfb.jpg',
+    '主页薇尔莉特.jpg',
+    '主页喜多川.jpg',
+    '主页eva合影.jpg',
+    '主页胡桃.jpg',
+    '主页流萤合影.jpg',
+    '主页命运石之门.jpg',
+    '主页四谎.jpg',
+    '主页二乃.jpg',
+    '主页芙芙1.jpg',
+    '主页芙芙2.jpg',
     '主页阿根廷夺冠.webp',
     '主页巴萨夺冠.jpg',
     '主页德约.jpg',
@@ -583,12 +594,12 @@ function createPuzzleGrid(){
 
   const cols = 8; const rows = 6; const totalPieces = 48;
   
-  // 2. 找出所有位于第1、2、7、8列 (索引 0,1,6,7) 和第1、6行 (索引 0,5) 的目标格子索引
+  // 2. 找出所有位于第1、2、7、8列 (索引 0,1,6,7) 和第1、6行 (索引 0,5) 的目标格子索引 (共计32个格子)
   let targetIndices = [];
   for(let i=0; i<totalPieces; i++){
     let col = i % cols;
     let row = Math.floor(i / cols);
-    // 判断是否在目标区域 (最外两圈)
+    // 判断是否在目标区域
     if(col === 0 || col === 1 || col === 6 || col === 7 || row === 0 || row === 5) {
       targetIndices.push(i);
     }
@@ -600,10 +611,10 @@ function createPuzzleGrid(){
     [targetIndices[i], targetIndices[j]] = [targetIndices[j], targetIndices[i]];
   }
 
-  // 4. 将图片分配给打乱后的前 8 个目标格子
+  // 4. 将所有图片分配给打乱后的前 19 个目标格子
   let finalPieceConfig = {}; // 格式: { pieceIndex: imageName }
   for(let i=0; i<availableImages.length; i++) {
-    // 确保图片数量不超过目标格子数量 (8 < 32，没问题)
+    // 确保图片数量不超过目标格子数量
     if(i < targetIndices.length) {
       finalPieceConfig[targetIndices[i]] = availableImages[i];
     }
@@ -650,7 +661,7 @@ function createPuzzleGrid(){
     if (finalPieceConfig[i]) {
       back.style.backgroundImage = `url('${finalPieceConfig[i]}')`;
     } else {
-      // 其他最外圈格子或中间格子，保持默认样式或空白
+      // 未被分配图片的格子保持半透明底色，不抢戏
       back.style.background = 'rgba(255, 229, 238, 0.8)'; 
     }
 
