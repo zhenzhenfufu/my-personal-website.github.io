@@ -306,10 +306,9 @@ body {
       </div>
       <div class="flip-back" style="pointer-events: auto;">
         <div class="resume-name" data-i18n="res.name">王臻 Zhen Wang</div>
-        <div class="res-row"><span class="res-icon">📱</span> <span data-i18n="res.phone">手机 Phone: +86 15205181003 / +1 858-220-8768</span></div>
         <div class="res-row"><span class="res-icon">📧</span> <span data-i18n="res.email">邮箱 Email: zhw124@ucsd.edu</span></div>
-        <div class="res-row"><span class="res-icon">🎂</span> <span data-i18n="res.dob">出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male</span></div>
         <div class="res-row"><span class="res-icon">📍</span> <span data-i18n="res.loc">所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego</span></div>
+        <div class="res-row"><span class="res-icon">🎮</span> <span data-i18n="res.hobbies">兴趣爱好 Hobbies: 网球🎾 / 足球⚽️ / 动漫 / 游戏</span></div>
         <hr style="margin: 15px 0; border: none; border-top: 2px dashed rgba(155,0,255,0.2);">
         <div class="edu-box">
           <div class="edu-title" data-i18n="res.edu1t">🎓 加州大学圣地亚哥分校 (UCSD)</div>
@@ -401,6 +400,22 @@ body {
     <div class="s-tag" data-i18n="mom.tag">生活分享</div>
     <h2 class="s-title" style="text-align:center"><span data-i18n="mom.title1">我的</span> <span class="rainbow" data-i18n="mom.title2">朋友圈</span></h2>
     <p style="color:var(--t2);font-weight:700;margin-bottom:2rem;text-align:center" data-i18n="mom.note">这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～</p>
+    
+    <div class="moment-card reveal-item">
+      <div class="m-avatar"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
+      <div class="m-content">
+        <div class="m-name">Zhen Wang</div>
+        <div class="m-text" data-i18n="moment2.text">躺好啦～包c的！</div>
+        <div class="m-gallery">
+          <img src="微信图片_20260415202401_26_2.jpg" alt="pic"><img src="微信图片_20260415202404_27_2.jpg" alt="pic"><img src="微信图片_20260415202406_28_2.jpg" alt="pic">
+          <img src="微信图片_20260415202408_29_2.jpg" alt="pic"><img src="微信图片_20260415202411_30_2.jpg" alt="pic"><img src="微信图片_20260415202416_31_2.jpg" alt="pic">
+          <img src="微信图片_20260415202418_32_2.jpg" alt="pic"><img src="微信图片_20260415202421_33_2.jpg" alt="pic"><img src="微信图片_20260415202424_34_2.jpg" alt="pic">
+        </div>
+        <div class="m-location" data-i18n="moment2.location">中国 上海市 上海世博会博物馆</div>
+        <div class="m-footer"><span data-i18n="moment2.date">2026.3.22</span><span>🤍 258</span></div>
+      </div>
+    </div>
+
     <div class="moment-card reveal-item">
       <div class="m-avatar"><img src="个人主页首页照片.jpg" alt="Zhen Wang"></div>
       <div class="m-content">
@@ -451,10 +466,9 @@ zh:{
 'map.edu': '对白·无言之书', 'map.res': '求证·大地的底稿', 'map.life': '漫游·心底的牧场', 'map.ppl': '相望·最近的灯火',
 'hero.cta1':'深入探索我', 'hero.cta2':'点击反转查看个人信息',
 'res.name': '王臻 Zhen Wang',
-'res.phone': '手机 Phone: +86 15205181003 / +1 858-220-8768',
 'res.email': '邮箱 Email: zhw124@ucsd.edu',
-'res.dob': '出生日期 DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; ♂️ 性别 Gender: 男 Male',
 'res.loc': '所在地 Location: 中国 上海 Shanghai & 美国 圣地亚哥 San Diego',
+'res.hobbies': '兴趣爱好 Hobbies: 网球🎾 / 足球⚽️ / 动漫 / 游戏',
 'res.edu1t': '🎓 加州大学圣地亚哥分校 (UCSD)', 'res.edu1s': '本科 | 2025.09 - 至今',
 'res.edu2t': '🏫 上海市世外中学 (WFLA)', 'res.edu2s': '高中 | 2022.09 - 2025.06',
 'res.back': '↩ 返回正面界面',
@@ -463,23 +477,24 @@ zh:{
 'pow.title':'旅行者能量站','pow.sub':'VISITOR ENERGY STATION','pow.unit':'份能量已收到','pow.btn':'点击充能 +1','pow.msg0':'你好呀旅行者，快来给我充能吧！','exp.tag':'研究 & 经历','exp.title1':'我做过的','exp.title2':'研究与探索',
 'e1.org':'UCSD · 独立本科科研项目','e1.role':'独立研究员 — 边缘 AI 热节流效应研究','e1.date':'2026.03 – 至今','e1.b1':'独立主导课题：边缘 AI 热节流效应与能效关系。导师：Peter Chi 教授。','e1.b2':'在 GPU/Jetson 设备上部署 Llama-3，使用 nvidia-smi & Prometheus 实时采集 GPU 温度、时钟频率、功耗与吞吐量。','e1.b3':'构建"效率-热量"量化模型，产出含可视化仪表盘的技术报告，为不同热状态下 AI 推理提供实证数据。',
 'e3.org':'上海交通大学 · 心理学院','e3.role':'研究助理 — 儿童发展与家庭研究实验室','e3.date':'2024.06 – 2025.09','e3.b1':'在孙晓宁教授课题组处理 500+ 小时幼儿行为结构化数据，推动大规模发展研究数据的系统化分析。','e3.b2':'使用 Stata & Excel 管理发展评估数据集，与博士生协作构建自动化流程，完成 95 份标准化计算分析报告。','e3.b3':'主导设计 60 项变量采集工具；独立执行 28 名儿童的标准化评估（韦氏量表、TEC）。','e3.b4':'担任《Developmental Psychology》期刊审稿人；每周文献研讨会完成 10 次方法学批判性汇报。',
-'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'203.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
+'e4.org':'上海市世外中学 · 学生会','e4.role':'实践部副部长','e4.date':'2023.09 – 2024.09','e4.b1':'管理 108 人校志愿者团队，统筹调度电影博物馆、敦煌文化周、中国文化周、爱心义卖、篮球班赛等多类活动。',
 'tl.tag':'人生时间轴','tl.title1':'走过的','tl.title2':'每一步',
 'tl1.ev':'🏫 上海市世外中学（高中）','tl1.d':'高中三年，发现对数据科学与社会科学的深厚兴趣，系统打磨独立思考与自学能力，厚积薄发。','tl2.ev':'🎖️ 学生会实践部副部长','tl2.d':'领导 108 人志愿者团队，在高三繁忙学业中磨砺组织能力与领导力，统筹多项大型校园文化活动。','tl3.ev':'🔬 上海交大心理学院 RA','tl3.d':'人生第一段正式科研经历。独立执行 28 名儿童认知评估，处理 500+ 小时数据，学会了 Stata 与系统化研究方法。','tl4.ev':'✈️ 远赴加州，开启 UCSD','tl4.d':'带着好奇与期待飞越太平洋，开始数据科学 & 数学-计算机科学双专业本科学习。GPA 4.0/4.0。','tl5.ev':'📝 "学生为何上学"社会学研究','tl5.d':'带领 5 人团队完成 10 场深度访谈，运用假设检验与定性编码，合作撰写 25 页研究报告。满分 100/100 ⭐','tl6.ev':'📈 英超转会分析项目','tl6.d':'用 Python/Pandas 爬取 Transfermarkt 近 10 年数据，构建时间序列数据集，用线性回归量化转会投入与竞技成绩的关系。','tl8.ev':'🏆 独立科研：边缘 AI 能效','tl8.d':'获得本科科研资助，独立主导边缘 AI 热节流效应研究，导师 Peter Chi 教授。向高性能计算与 AI 研究全力冲刺。',
 'proj.tag':'精选项目','proj.title1':'做出来的','proj.title2':'成果',
 'p1.t':'边缘 AI 热节流效应研究','p1.d':'独立本科科研项目，在 Jetson 上部署 Llama-3，构建实时监控管道与"效率-热量"量化模型，探究边缘推理能效边界。','p2.t':'英超转会花费与净胜球关系分析','p2.d':'用 Python/Pandas 从 Transfermarkt 爬取 20 支球队近 10 年数据，用线性回归量化转会投入与竞技成绩的相关性。','p3.t':'"学生为何上学" 社会学研究','p3.d':'带领 5 人团队完成 10 场深度访谈，运用统计假设检验与定性编码处理数据，合作完成 25 页研究报告。满分 100/100 ⭐','p4.t':'儿童发展数据流水线','p4.d':'在上海交大自动化 Stata/Excel 工作流，处理 500+ 小时行为数据。设计 60 变量问卷，为 28 名儿童执行韦氏量表等标准化评估。',
 'sk.tag':'技能树','sk.title1':'我的','sk.title2':'能力点',
 'sk1.n':'编程与工程','sk1.d':'高性能计算、数据处理流水线、自动化脚本与面向对象系统开发。','sk2.n':'数据分析','sk2.d':'统计建模、假设检验、线性回归建模、数据清洗与探索性分析（EDA）。','sk3.n':'研究方法','sk3.d':'定性与定量混合方法、深度访谈设计、行为实验执行与结构化报告撰写。','sk4.n':'AI & 机器学习','sk4.d':'边缘 AI 部署、LLM 推理、监督学习与 GPU 性能剖析。','sk5.n':'工具与平台','sk5.d':'覆盖研究分析全链路的行业工具，熟练构建可复现的数据流水线。','sk6.n':'表达与传播','sk6.d':'中英双语写作与演示。Bilibili 内容创作者，视频累计播放量 15.5 万+。',
-'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～','moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
+'mom.tag':'生活分享','mom.title1':'我的','mom.title2':'朋友圈','mom.note':'这里是我的生活碎片。内容持续更新中，快来看看我最近在干嘛～',
+'moment2.text': '躺好啦～包c的！', 'moment2.location': '中国 上海市 上海世博会博物馆', 'moment2.date': '2026.3.22',
+'moment1.text': 'Sept.30-Oct.13 劳力士上海大师赛 🎾','moment1.location': '中国 上海市 旗忠网球中心','moment1.date': '2024年10月11日','ct.tag':'联系我','ct.title1':'一起','ct.title2':'搞点有意思的事','ct.h3':'一起做些有趣的事吧！','ct.p1':'我目前是 UCSD 的独立本科研究员，在研究边缘 AI 能效问题。随时欢迎聊科研、数据科学，或者只是打个招呼 ✨','ct.btn':'发消息给我 💌','ft':'用','ft2':'制作 · UCSD 数据科学 & 数学-CS'
 },
 en:{
 'map.edu': 'In-Class Learning', 'map.res': 'Research & Projects', 'map.life': 'Daily Life & Hobbies', 'map.ppl': 'Connections',
 'hero.cta1':'Explore Me', 'hero.cta2':'Click to view personal info',
 'res.name': 'Zhen Wang',
-'res.phone': 'Phone: +86 15205181003 / +1 858-220-8768',
 'res.email': 'Email: zhw124@ucsd.edu',
-'res.dob': 'DOB: 2007/01/07 &nbsp;&nbsp;&nbsp; Gender: Male',
 'res.loc': 'Location: Shanghai, China & San Diego, USA',
+'res.hobbies': 'Hobbies: Tennis🎾 / Soccer⚽️ / Anime / Gaming',
 'res.edu1t': '🎓 UC San Diego (UCSD)', 'res.edu1s': 'Undergrad | 2025.09 - Present',
 'res.edu2t': '🏫 Shanghai World Foreign Language Academy (WFLA)', 'res.edu2s': 'High School | 2022.09 - 2025.06',
 'res.back': '↩ Back to Front',
@@ -493,7 +508,6 @@ en:{
 'tl1.ev':'🏫 Shanghai World Foreign Language Academy','tl1.d':'Three years of high school. Discovered deep passion for data science and social science; honed independent thinking.','tl2.ev':'🎖️ Student Union Vice Minister','tl2.d':'Led a 108-member volunteer team through major campus events, honing leadership and organizational skills.','tl3.ev':'🔬 SJTU Psychology Dept. RA','tl3.d':'First formal research experience. Conducted cognitive assessments for 28 children, processed 500+ hours of data.','tl4.ev':'✈️ Off to California — UCSD Begins','tl4.d':'Crossed the Pacific to begin a double major in Data Science & Math-CS. GPA: 4.0/4.0.','tl5.ev':'📝 "Why Do Students Go to College?"','tl5.d':'Led a 5-member sociology team through 10 interviews, hypothesis testing, and qualitative coding. Score: 100/100 ⭐','tl6.ev':'📈 EPL Transfer Spending Analysis','tl6.d':'Scraped 10 years of Premier League transfer data from Transfermarkt; quantified ROI using linear regression.','tl8.ev':'🏆 Independent Research: Edge AI','tl8.d':'Received undergraduate research funding to lead edge AI thermal throttling research under Prof. Peter Chi.',
 'proj.tag':'Selected Projects','proj.title1':"Things I've",'proj.title2':'shipped',
 'p1.t':'Edge AI Thermal Throttling Study','p1.d':'Independent undergraduate research. Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.',
-'p2.t':'Edge AI Thermal Throttling Study','p2.d':'Deployed Llama-3 on Jetson, built monitoring pipeline and efficiency-to-heat model.',
 'p2.t':'EPL Transfer Spending vs. Goal Difference','p2.d':'Scraped 10 years of Premier League data from Transfermarkt. Applied linear regression to quantify transfer ROI.',
 'p3.t':'"Why Do Students Go to College?"','p3.d':'Led a 5-member team through 10 interviews, hypothesis testing, and qualitative coding. 25-page report. 100/100 ⭐',
 'p4.t':'Child Development Data Pipeline','p4.d':'Automated Stata/Excel workflows at SJTU for 500+ hours of data. Conducted Wechsler assessments for 28 children.',
@@ -504,7 +518,9 @@ en:{
 'sk4.n':'AI & Machine Learning','sk4.d':'Edge AI deployment, LLM inference, supervised learning, and GPU performance profiling.',
 'sk5.n':'Tools & Platforms','sk5.d':'Industry-standard tools for full-stack research workflows and reproducible data pipelines.',
 'sk6.n':'Communication','sk6.d':'Bilingual Chinese/English writing and presentation. Bilibili creator with 155K+ total views.',
-'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",'moment1.text': 'Sept.30-Oct.13 at Rolex Shanghai Masters 🎾','moment1.location': 'Qi Zhong Tennis Center, Shanghai','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
+'mom.tag':'Life Sharing','mom.title1':'My','mom.title2':'Moments','mom.note':"Snippets of my life. Updated regularly — come see what I've been up to!",
+'moment2.text': 'Just chill, I will carry! 😎', 'moment2.location': 'World Expo Museum, Shanghai, China', 'moment2.date': 'Mar 22, 2026',
+'moment1.text': 'Sept.30-Oct.13 at Rolex Shanghai Masters 🎾','moment1.location': 'Qi Zhong Tennis Center, Shanghai','moment1.date': 'Oct 11, 2024','ct.tag':'Contact','ct.title1':"Let's",'ct.title2':'build something together','ct.h3':"Let's do something interesting!",'ct.p1':"I'm an independent undergraduate researcher at UCSD studying edge AI energy efficiency. Happy to chat! ✨",'ct.btn':'Send me a message 💌','ft':'Made with','ft2':'· UCSD Data Science & Math-CS'
 }};
 
 let lang='zh';
@@ -573,8 +589,6 @@ function createPuzzleGrid(){
   const availableImages = [
     'fc8437016dd85340cde28c1cbfb02cfb.jpg',
     '主页薇尔莉特.jpg',
-    '主页薇尔莉特2.jpeg',
-    '主页薇尔莉特3.jpg',
     '主页喜多川.jpg',
     '主页eva合影.jpg',
     '主页胡桃.jpg',
@@ -591,16 +605,7 @@ function createPuzzleGrid(){
     '主页苏牙.jpg',
     '主页遐蝶.jpg',
     '主页一色.jpeg',
-    '主页有希.jpg',
-    '主页阿离.jpg',
-    '主页阿离2.jpg',
-    '主页蜜璃.jpg',
-    '主页缄默得克萨斯.jpg',
-    '主页维尔汀.jpg',
-    '主页f1勒克莱尔.jpg',
-    '主页辛纳.jpg',
-    '壁纸2.jpeg',
-    '壁纸5.jpeg'
+    '主页有希.jpg'
   ];
 
   const cols = 8; const rows = 6; const totalPieces = 48;
